@@ -1,7 +1,6 @@
 ## **Project Description**
-Something
 
-**Videre** seeks innovative BCIT SSD students to develop an Angular progressive web application (PWA) that aids life insurance advisors in assessing clients' maximum insurable needs. This project builds upon a validated MVP to expand functionality, enhance user experience, and streamline deployment processes.
+**Videre** seeks innovative BCIT CST students to develop an Angular progressive web application (PWA) that aids life insurance advisors in assessing clients' maximum insurable needs. This project builds upon a validated MVP to expand functionality, enhance user experience, and streamline deployment processes.
 
 ## **Key elements include:**
 
@@ -11,12 +10,12 @@ Something
 - **Cloud Deployment:** Deploying the app to cloud infrastructure
 - **Language Model Agent:** Use OpenAI chatbot interface to allow the user interface with the app via a robo-advisor with a customized knowledge base.
 
-This project is an exceptional opportunity to apply a wide array of skills acquired through the SSD program, including but not limited to Angular, TypeScript, DevOps practices, and cloud deployments, in a real-world, market-validated application.
+This project is an exceptional opportunity to apply a wide array of skills acquired through the CST program, including but not limited to Angular, TypeScript, DevOps practices, and cloud deployments, in a real-world, market-validated application.
 
 ## **Technical Stack:**
 
 - Programming Language(s): Angular & Typescript, Github workflow actions
-- Students are encouraged to use TypeScript with Angular for front-end development, embracing the SSD program's focus on modern web technologies.
+- Students are encouraged to use TypeScript with Angular for front-end development, embracing the CST program's focus on modern web technologies.
 - The project promotes open-source tools and frameworks, aligning with industry standards for software development and deployment. Emphasis will be placed on utilizing GitHub for version control and collaboration, alongside integrating APIs for enhanced functionalities.
 
 ## **Hardware/Software Requirements:**
