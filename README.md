@@ -1,4 +1,5 @@
 ## **Project Description**
+Something
 
 **Videre** seeks innovative BCIT SSD students to develop an Angular progressive web application (PWA) that aids life insurance advisors in assessing clients' maximum insurable needs. This project builds upon a validated MVP to expand functionality, enhance user experience, and streamline deployment processes.
 
