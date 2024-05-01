@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "pip install pre-commit && pre-commit install && cd .. && husky dna-frontend/.husky"
+    "prepare": "pip install pre-commit && git config --unset-all core.hooksPath && pre-commit install && cd .. && husky dna-frontend/.husky"
   },
   "private": true,
   "dependencies": {
