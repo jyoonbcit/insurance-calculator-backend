@@ -1,1 +1,2 @@
+cd dna-frontend
 npx lint-staged
