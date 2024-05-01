@@ -65,5 +65,11 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "prettier": "3.2.5",
     "typescript": "~5.4.2"
+  },
+  "lint-staged": {
+    "**/*": [
+      "eslint --fix",
+      "prettier --write --ignore-unknown"
+    ]
   }
 }
