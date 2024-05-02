@@ -6,8 +6,8 @@
   "author": "Ben Chiang <chiangbenjamin991@gmail.com>",
   "scripts": {
     "lint": "eslint src/ && tsc --noEmit -p tsconfig.json",
-    "start": "node --import tsx/esm src/",
-    "start:dev": "node --watch --env-file=../../.env --import tsx/esm src/"
+    "start": "cross-env NODE_ENV=production node --import tsx/esm src/",
+    "start:dev": "cross-env NODE_ENV=development node --watch --env-file=../../.env --import tsx/esm src/"
   },
   "dependencies": {
     "@Vero-Ventures/logger": "^0.0.0",
