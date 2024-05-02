@@ -18,6 +18,7 @@ export class Gateway {
   public readonly app: express.Application;
   private server: ReturnType<express.Application['listen']> | null = null;
 
+  private readonly services: Record<string, URL> = {};
   private readonly router = express.Router();
 
   constructor() {
@@ -33,9 +34,9 @@ export class Gateway {
 
     this.app.use('/api/v1', this.router);
 
-    this.app.get('/healthz', (_: Request, res: Response) => {
+    this.app.get('/healthz', async (_: Request, res: Response) => {
       return res.status(200).json({
-        msg: 'OK!',
+        data: await this.runHealthCheck(),
       });
     });
 
@@ -50,10 +51,31 @@ export class Gateway {
     const targetServiceUrl = new URL(`/api/v${serviceApiVersion}`, 'http://0.0.0.0');
     targetServiceUrl.port = servicePort.toString();
 
+    this.services[basePath] = targetServiceUrl;
+
     this.router.use(basePath, createProxyMiddleware({
       target: targetServiceUrl.toString(),
       changeOrigin: true,
     }));
+  }
+
+  public async runHealthCheck() {
+    const report: Record<string, boolean> = {};
+
+    for await (const [name, serviceUrl] of Object.entries(this.services)) {
+      serviceUrl.pathname = 'healthz';
+      const url = serviceUrl.toString();
+
+      try {
+        const response = await fetch(url);
+
+        report[name] = response.status === 200;
+      } catch (e) {
+        report[name] = false;
+      }
+    }
+
+    return report;
   }
 
   public start(host: string, port: number, cb?: () => void) {
