@@ -56,6 +56,16 @@ export class Gateway {
     this.router.use(basePath, createProxyMiddleware({
       target: targetServiceUrl.toString(),
       changeOrigin: true,
+      on: {
+        error: (err, _, res) => {
+          if ('errno' in err && err.errno === -111) {
+            // @ts-ignore - REASON: LSP says we can not use .status on res, but runs without error and functions as intended.
+            return res.status(504).json({
+              data: 'Could not reach service',
+            });
+          }
+        },
+      }
     }));
   }
 
