@@ -1,0 +1,22 @@
+{
+  "name": "@Vero-Ventures/gateway",
+  "type": "module",
+  "private": true,
+  "version": "0.0.0",
+  "author": "Ben Chiang <chiangbenjamin991@gmail.com>",
+  "scripts": {
+    "lint": "eslint src/ && tsc --noEmit -p tsconfig.json",
+    "start": "node --import tsx/esm src/",
+    "start:dev": "node --watch --env-file=../../.env --import tsx/esm src/"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^20.12.8",
+    "tsx": "^4.8.2",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

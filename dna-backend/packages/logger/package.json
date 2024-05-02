@@ -1,0 +1,23 @@
+{
+  "name": "@Vero-Ventures/logger",
+  "private": true,
+  "version": "0.0.0",
+  "author": "Ben Chiang <chiangbenjamin991@gmail.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build:watch": "tsc --watch & tsc-alias --watch",
+    "build": "tsc && tsc-alias",
+    "lint": "eslint src/ && tsc --noEmit --project tsconfig.json"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^20.12.8",
+    "tsc-alias": "^1.8.8",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
