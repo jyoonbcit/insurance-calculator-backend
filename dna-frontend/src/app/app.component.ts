@@ -5,17 +5,34 @@ import {
   TuiAlertModule,
   TUI_SANITIZER,
 } from '@taiga-ui/core';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { TUI_DIALOG_CLOSES_ON_BACK } from '@taiga-ui/cdk';
+import { of } from 'rxjs';
+import { SupabaseService } from './core/services/supabase.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TuiRootModule, TuiDialogModule, TuiAlertModule],
+  imports: [RouterOutlet, TuiRootModule, TuiDialogModule, TuiAlertModule, NgIf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
+  providers: [
+    { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
+    { provide: TUI_DIALOG_CLOSES_ON_BACK, useValue: of(true) },
+  ],
 })
-export class AppComponent {
-  title = 'dna-frontend';
+export class AppComponent implements OnInit {
+  constructor(private readonly supabase: SupabaseService) {}
+
+  title = 'DNA';
+
+  session = this.supabase.session;
+
+  ngOnInit() {
+    this.supabase.authChanges((_, session) => {
+      this.session = session;
+    });
+  }
 }
