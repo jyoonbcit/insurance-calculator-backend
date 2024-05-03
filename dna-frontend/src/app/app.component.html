@@ -1,4 +1,4 @@
 <tui-root>
-  <h1 *ngIf="session">Logged in</h1>
+  <app-auth *ngIf="!session"></app-auth>
   <router-outlet />
 </tui-root>

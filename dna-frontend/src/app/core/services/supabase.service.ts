@@ -31,10 +31,14 @@ export class SupabaseService {
     return this._session;
   }
 
-  profile(user: User) {
+  profile(user?: User) {
+    if (!user) {
+      throw new Error('Not logged in.');
+    }
+
     return this.supabase
       .from('profiles')
-      .select(`username`)
+      .select(`id`)
       .eq('id', user.id)
       .single();
   }
