@@ -7,14 +7,8 @@ import {
   SupabaseClient,
   User,
 } from '@supabase/supabase-js';
-import { environment } from 'src/environments/environment';
-
-export interface Profile {
-  id?: string;
-  username: string;
-  website: string;
-  avatar_url: string;
-}
+import { ENVIRONMENT } from 'environments/environment';
+import { Profile } from 'app/core/models/profile.model';
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +19,8 @@ export class SupabaseService {
 
   constructor() {
     this.supabase = createClient(
-      environment.supabaseUrl,
-      environment.supabaseKey
+      ENVIRONMENT.supabaseUrl,
+      ENVIRONMENT.supabaseKey
     );
   }
 
@@ -40,7 +34,7 @@ export class SupabaseService {
   profile(user: User) {
     return this.supabase
       .from('profiles')
-      .select(`username, website, avatar_url`)
+      .select(`username, full_name`)
       .eq('id', user.id)
       .single();
   }
@@ -66,13 +60,5 @@ export class SupabaseService {
     };
 
     return this.supabase.from('profiles').upsert(update);
-  }
-
-  downLoadImage(path: string) {
-    return this.supabase.storage.from('avatars').download(path);
-  }
-
-  uploadAvatar(filePath: string, file: File) {
-    return this.supabase.storage.from('avatars').upload(filePath, file);
   }
 }
