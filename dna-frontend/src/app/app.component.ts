@@ -5,11 +5,10 @@ import {
   TuiAlertModule,
   TUI_SANITIZER,
 } from '@taiga-ui/core';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TUI_DIALOG_CLOSES_ON_BACK } from '@taiga-ui/cdk';
 import { of } from 'rxjs';
-import { SupabaseService } from './core/services/supabase.service';
 import { AuthComponent } from './core/components/auth/auth.component';
 import { NgIf } from '@angular/common';
 
@@ -31,15 +30,8 @@ import { NgIf } from '@angular/common';
     { provide: TUI_DIALOG_CLOSES_ON_BACK, useValue: of(true) },
   ],
 })
-export class AppComponent implements OnInit {
-  constructor(private readonly supabase: SupabaseService) {}
+export class AppComponent {
+  constructor() {}
 
   title = 'DNA';
-  session = this.supabase.session;
-
-  ngOnInit() {
-    this.supabase.authChanges((_, session) => {
-      this.session = session;
-    });
-  }
 }

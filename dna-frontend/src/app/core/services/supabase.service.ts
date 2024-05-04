@@ -1,68 +1,48 @@
-import { Injectable } from '@angular/core';
-import {
-  AuthChangeEvent,
-  AuthSession,
-  createClient,
-  Session,
-  SupabaseClient,
-  User,
-} from '@supabase/supabase-js';
+import { Injectable, NgZone } from '@angular/core';
+import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { ENVIRONMENT } from 'environments/environment';
-import { Profile } from 'app/core/models/profile.model';
+import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SupabaseService {
-  private supabase: SupabaseClient;
-  _session: AuthSession | null = null;
+  private supabase!: SupabaseClient;
+  user = new BehaviorSubject<User | null>(null);
 
-  constructor() {
-    this.supabase = createClient(
-      ENVIRONMENT.supabaseUrl,
-      ENVIRONMENT.supabaseKey
-    );
-  }
-
-  get session() {
-    this.supabase.auth.getSession().then(({ data }) => {
-      this._session = data.session;
-    });
-    return this._session;
-  }
-
-  profile(user?: User) {
-    if (!user) {
-      throw new Error('Not logged in.');
-    }
-
-    return this.supabase
-      .from('profiles')
-      .select(`id`)
-      .eq('id', user.id)
-      .single();
-  }
-
-  authChanges(
-    callback: (event: AuthChangeEvent, session: Session | null) => void
+  constructor(
+    private router: Router,
+    private zone: NgZone
   ) {
-    return this.supabase.auth.onAuthStateChange(callback);
+    this.supabase = createClient(
+      ENVIRONMENT.supabase.url,
+      ENVIRONMENT.supabase.key
+    );
+
+    this.supabase.auth.onAuthStateChange((_, session) => {
+      this.user.next(session?.user ?? null);
+      if (session?.user) {
+        this.zone.run(() => {
+          this.router.navigate(['/']);
+        });
+      }
+    });
   }
 
-  signIn(email: string) {
-    return this.supabase.auth.signInWithOtp({ email });
+  async signUp(email: string, password: string) {
+    return await this.supabase.auth.signUp({ email, password });
   }
 
-  signOut() {
-    return this.supabase.auth.signOut();
+  async signIn(email: string, password: string) {
+    return await this.supabase.auth.signInWithPassword({ email, password });
   }
 
-  updateProfile(profile: Profile) {
-    const update = {
-      ...profile,
-      updated_at: new Date(),
-    };
+  async signOut() {
+    await this.supabase.auth.signOut();
+  }
 
-    return this.supabase.from('profiles').upsert(update);
+  get currentUser() {
+    return this.user.asObservable();
   }
 }

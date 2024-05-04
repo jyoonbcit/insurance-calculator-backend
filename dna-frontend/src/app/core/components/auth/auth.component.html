@@ -1,22 +1,43 @@
 <div class="row flex-center flex">
   <div class="col-6 form-widget" aria-live="polite">
     <h1 class="header">Login</h1>
-    <p class="description">Sign in via magic link with your email below</p>
-    <p class="warning">Warning: Limit 10 requests per hour</p>
-    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="form-widget">
+    <form [formGroup]="signInForm" (ngSubmit)="onLogin()" class="form-widget">
       <div>
         <label for="email">Email</label>
         <input
-          id="email"
+          id="signinemail"
           formControlName="email"
           class="inputField"
           type="email"
           placeholder="Your email" />
+        <input
+          id="signinpassword"
+          formControlName="password"
+          class="inputField"
+          type="password" />
       </div>
       <div>
-        <button type="submit" class="button block" [disabled]="loading">
-          {{ loading ? 'Loading' : 'Send magic link' }}
-        </button>
+        <button type="submit" class="button block">Login</button>
+      </div>
+    </form>
+    <h1 class="header">Signup</h1>
+    <form [formGroup]="signInForm" (ngSubmit)="onSignup()" class="form-widget">
+      <div>
+        <label for="email">Email</label>
+        <input
+          id="signupemail"
+          formControlName="email"
+          class="inputField"
+          type="email"
+          placeholder="Your email" />
+        <input
+          id="signuppassword"
+          formControlName="password"
+          class="inputField"
+          type="password" />
+      </div>
+      <div>
+        <button type="submit" class="button block">Signup</button>
       </div>
     </form>
   </div>

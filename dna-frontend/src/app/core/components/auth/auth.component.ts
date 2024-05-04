@@ -1,5 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, NgZone } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TuiDialogService } from '@taiga-ui/core';
 import { SupabaseService } from 'app/core/services/supabase.service';
 
@@ -11,27 +12,30 @@ import { SupabaseService } from 'app/core/services/supabase.service';
   styleUrl: './auth.component.scss',
 })
 export class AuthComponent {
-  constructor(
-    @Inject(TuiDialogService)
-    private readonly dialogs: TuiDialogService,
-    private formBuilder: FormBuilder,
-    private supabaseService: SupabaseService
-  ) {}
-
-  loading = false;
   signInForm = this.formBuilder.group({
     email: '',
+    password: '',
   });
 
-  async onSubmit(): Promise<void> {
+  constructor(
+    @Inject(TuiDialogService)
+    private readonly dialog: TuiDialogService,
+    private formBuilder: FormBuilder,
+    private supabaseService: SupabaseService,
+    private router: Router,
+    private zone: NgZone
+  ) {}
+
+  async onSignup(): Promise<void> {
     try {
-      this.loading = true;
       const email = this.signInForm.value.email as string;
-      const { error } = await this.supabaseService.signIn(email);
-      if (error) {
-        throw error;
+      const password = this.signInForm.value.password as string;
+      const response = await this.supabaseService.signUp(email, password);
+      console.log(response);
+      if (response.error) {
+        throw new Error(response.error.message);
       }
-      this.open('Check your email for the login link!');
+      this.open('Check your email to complete your sign up.');
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
@@ -39,11 +43,32 @@ export class AuthComponent {
       }
     } finally {
       this.signInForm.reset();
-      this.loading = false;
+    }
+  }
+
+  async onLogin(): Promise<void> {
+    try {
+      const email = this.signInForm.value.email as string;
+      const password = this.signInForm.value.password as string;
+      const response = await this.supabaseService.signIn(email, password);
+      console.log(response);
+      if (response.error) {
+        throw new Error(response.error.message);
+      }
+      this.zone.run(() => {
+        this.router.navigate(['/']);
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error);
+        this.open(error.message);
+      }
+    } finally {
+      this.signInForm.reset();
     }
   }
 
   open(message: string) {
-    this.dialogs.open(message).subscribe();
+    this.dialog.open(message).subscribe();
   }
 }
