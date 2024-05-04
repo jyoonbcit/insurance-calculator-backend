@@ -1,6 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": [".angular/"],
+  "ignorePatterns": [".angular/", "**/*.json"],
   "overrides": [
     {
       "files": ["*.ts"],
