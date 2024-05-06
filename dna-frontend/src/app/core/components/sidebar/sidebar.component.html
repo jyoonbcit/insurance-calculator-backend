@@ -1,1 +1,19 @@
-<p>sidebar works!</p>
+<button
+  tuiButton
+  type="button"
+  (click)="toggle(true)"
+  (tuiActiveZoneChange)="toggle($event)">
+  Show sidebar
+  <div *tuiSidebar="open" class="flex column">
+    <a icon="tuiIconSettings" iconAlign="left" tuiLink> Link with icon left </a>
+    <a icon="tuiIconSettings" iconAlign="left" tuiLink> Link with icon left </a>
+    <a icon="tuiIconSettings" iconAlign="left" tuiLink> Link with icon left </a>
+    <a icon="tuiIconSettings" iconAlign="left" tuiLink> Link with icon left </a>
+    <a icon="tuiIconSettings" iconAlign="left" tuiLink> Link with icon left </a>
+    <a icon="tuiIconSettings" iconAlign="left" tuiLink> Link with icon left </a>
+    <a icon="tuiIconSettings" iconAlign="left" tuiLink> Link with icon left </a>
+    <a icon="tuiIconSettings" iconAlign="left" tuiLink> Link with icon left </a>
+    <a icon="tuiIconSettings" iconAlign="left" tuiLink> Link with icon left </a>
+    <a icon="tuiIconSettings" iconAlign="left" tuiLink> Link with icon left </a>
+  </div>
+</button>
