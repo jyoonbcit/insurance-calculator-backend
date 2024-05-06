@@ -1,6 +1,6 @@
 {
   "name": "dna-frontend",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
     "@ngrx/store": "^17.2.0",
+    "@supabase/supabase-js": "^2.43.0",
     "@taiga-ui/addon-charts": "^3.76.0",
     "@taiga-ui/addon-commerce": "^3.76.0",
     "@taiga-ui/addon-doc": "^3.76.0",

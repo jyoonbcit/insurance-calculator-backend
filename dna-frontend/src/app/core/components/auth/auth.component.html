@@ -1,0 +1,44 @@
+<div class="row flex-center flex">
+  <div class="col-6 form-widget" aria-live="polite">
+    <h1 class="header">Login</h1>
+    <form [formGroup]="signInForm" (ngSubmit)="onLogin()" class="form-widget">
+      <div>
+        <label for="email">Email</label>
+        <input
+          id="signinemail"
+          formControlName="email"
+          class="inputField"
+          type="email"
+          placeholder="Your email" />
+        <input
+          id="signinpassword"
+          formControlName="password"
+          class="inputField"
+          type="password" />
+      </div>
+      <div>
+        <button type="submit" class="button block">Login</button>
+      </div>
+    </form>
+    <h1 class="header">Signup</h1>
+    <form [formGroup]="signInForm" (ngSubmit)="onSignup()" class="form-widget">
+      <div>
+        <label for="email">Email</label>
+        <input
+          id="signupemail"
+          formControlName="email"
+          class="inputField"
+          type="email"
+          placeholder="Your email" />
+        <input
+          id="signuppassword"
+          formControlName="password"
+          class="inputField"
+          type="password" />
+      </div>
+      <div>
+        <button type="submit" class="button block">Signup</button>
+      </div>
+    </form>
+  </div>
+</div>
