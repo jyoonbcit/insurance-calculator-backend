@@ -19,10 +19,10 @@ jobs:
         with:
           node-version: "20.x"
           token: ${{ secrets.ACTIONS_TOKEN }}
-      - run: cd ../dna-frontend
+      - run: cd /dna-frontend
       - run: npm ci
       - run: npm run format
-      - run: cd ../dna-backend
+      - run: cd /dna-backend
       - run: npm ci
       - run: npm run format
 
