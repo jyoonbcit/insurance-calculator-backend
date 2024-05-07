@@ -1,0 +1,34 @@
+<!-- Needs some color changes in global color overrides, but the general design is here -->
+<tui-island>
+  <h3 class="subscription-header tui-text_h5">Monthly</h3>
+  <p class="subscription-price tui-text_h3">
+    $50.00<span class="subscription-period">/month</span>
+  </p>
+  <app-horizontal-divider></app-horizontal-divider>
+  <tui-elastic-container>
+    <ul class="tui-list tui-list_medium">
+      <li class="tui-list__item" *ngFor="let item of current">
+        {{ item }}
+      </li>
+    </ul>
+  </tui-elastic-container>
+  <button
+    tuiButton
+    size="s"
+    type="button"
+    appearance="secondary"
+    class="expand-button"
+    (click)="toggle()">
+    <span>Show {{ expanded ? 'less' : 'more' }}</span>
+  </button>
+  <app-horizontal-divider></app-horizontal-divider>
+
+  <button
+    appearance="flat"
+    size="m"
+    tuiButton
+    type="button"
+    class="tui-island__footer-button">
+    Subscribe
+  </button>
+</tui-island>
