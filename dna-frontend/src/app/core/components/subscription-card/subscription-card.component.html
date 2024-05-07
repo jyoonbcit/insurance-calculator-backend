@@ -4,25 +4,24 @@
   <p class="subscription-price tui-text_h3">
     $50.00<span class="subscription-period">/month</span>
   </p>
-  <app-horizontal-divider></app-horizontal-divider>
-  <tui-elastic-container>
-    <ul class="tui-list tui-list_medium">
-      <li class="tui-list__item" *ngFor="let item of current">
-        {{ item }}
-      </li>
-    </ul>
-  </tui-elastic-container>
-  <button
-    tuiButton
-    size="s"
-    type="button"
-    appearance="secondary"
-    class="expand-button"
-    (click)="toggle()">
-    <span>Show {{ expanded ? 'less' : 'more' }}</span>
-  </button>
-  <app-horizontal-divider></app-horizontal-divider>
-
+  <div>
+    <tui-elastic-container>
+      <ul class="tui-list tui-list_medium">
+        <li class="tui-list__item" *ngFor="let item of current">
+          {{ item }}
+        </li>
+      </ul>
+    </tui-elastic-container>
+    <button
+      tuiButton
+      size="s"
+      type="button"
+      appearance="secondary"
+      class="expand-button"
+      (click)="toggle()">
+      <span>Show {{ expanded ? 'less' : 'more' }}</span>
+    </button>
+  </div>
   <button
     appearance="flat"
     size="m"

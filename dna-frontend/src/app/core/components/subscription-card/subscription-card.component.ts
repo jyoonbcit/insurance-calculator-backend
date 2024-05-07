@@ -1,7 +1,6 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { TuiIslandModule, TuiElasticContainerModule } from '@taiga-ui/kit';
-import { HorizontalDividerComponent } from '../horizontal-divider/horizontal-divider.component';
 import { TuiButtonModule } from '@taiga-ui/core';
 
 @Component({
@@ -13,7 +12,6 @@ import { TuiButtonModule } from '@taiga-ui/core';
     TuiElasticContainerModule,
     NgIf,
     NgFor,
-    HorizontalDividerComponent,
   ],
   templateUrl: './subscription-card.component.html',
   styleUrl: './subscription-card.component.scss',
