@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LandingCardComponent } from 'app/core/components/landing-card/landing-card.component';
 import { LineChartComponent } from 'app/core/components/line-chart/line-chart.component';
-import { ResultCardComponent } from 'app/core/components/result-card/result-card.component';
+import { ValueCardComponent } from 'app/core/components/value-card/value-card.component';
 import { SubscriptionCardComponent } from 'app/core/components/subscription-card/subscription-card.component';
 
 @Component({
@@ -10,7 +10,7 @@ import { SubscriptionCardComponent } from 'app/core/components/subscription-card
   imports: [
     SubscriptionCardComponent,
     LandingCardComponent,
-    ResultCardComponent,
+    ValueCardComponent,
     LineChartComponent,
   ],
   templateUrl: './test-page.component.html',

@@ -3,14 +3,14 @@ import { Component, Input } from '@angular/core';
 import { TuiIslandModule } from '@taiga-ui/kit';
 
 @Component({
-  selector: 'app-result-card',
+  selector: 'app-value-card',
   standalone: true,
   imports: [TuiIslandModule, NgClass],
-  templateUrl: './result-card.component.html',
-  styleUrl: './result-card.component.scss',
+  templateUrl: './value-card.component.html',
+  styleUrl: './value-card.component.scss',
 })
-export class ResultCardComponent {
+export class ValueCardComponent {
   @Input() header: string = '';
-  @Input() result: string = '';
+  @Input() value: string = '';
   @Input() compact: boolean = false;
 }
