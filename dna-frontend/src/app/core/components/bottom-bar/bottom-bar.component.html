@@ -1,0 +1,9 @@
+<button tuiButton size="s" type="button" class="back-button" (click)="back()">
+  <span class="tui-text_body-m">Back</span>
+</button>
+<div class="breadcrumbs">
+  <div *ngFor="let route of routes" [routerLink]="route.path"></div>
+</div>
+<button tuiButton size="s" type="button" class="next-button" (click)="next()">
+  <span class="tui-text_body-m">Next</span>
+</button>

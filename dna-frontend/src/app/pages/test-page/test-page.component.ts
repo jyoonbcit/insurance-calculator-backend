@@ -5,6 +5,7 @@ import { ValueCardComponent } from 'app/core/components/value-card/value-card.co
 import { SubscriptionCardComponent } from 'app/core/components/subscription-card/subscription-card.component';
 import { MultiValueCardComponent } from 'app/core/components/multi-value-card/multi-value-card.component';
 import { ValueListCardComponent } from 'app/core/components/value-list-card/value-list-card.component';
+import { BottomBarComponent } from 'app/core/components/bottom-bar/bottom-bar.component';
 
 @Component({
   selector: 'app-test-page',
@@ -16,6 +17,7 @@ import { ValueListCardComponent } from 'app/core/components/value-list-card/valu
     MultiValueCardComponent,
     LineChartComponent,
     ValueListCardComponent,
+    BottomBarComponent,
   ],
   templateUrl: './test-page.component.html',
   styleUrl: './test-page.component.scss',
