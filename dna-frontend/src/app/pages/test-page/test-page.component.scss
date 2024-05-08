@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 2.5em;
+}
+
+.spacer {
+  height: 2.5rem;
+}

@@ -1,0 +1,23 @@
+@mixin center-text {
+  text-align: center;
+}
+
+.result-header {
+  @include center-text;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+
+  &.compact {
+    margin: 0.25rem;
+  }
+}
+
+.result-value {
+  @include center-text;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+
+  &.compact {
+    margin: 0.25rem;
+  }
+}

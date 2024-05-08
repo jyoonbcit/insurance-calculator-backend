@@ -1,0 +1,33 @@
+@mixin center-text {
+  text-align: center;
+}
+
+.list-header {
+  @include center-text;
+}
+
+.value-list-label {
+  @include center-text;
+  margin-top: 1rem;
+}
+
+.value-list-value {
+  @include center-text;
+}
+
+.value-list-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.value-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+tui-island {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}

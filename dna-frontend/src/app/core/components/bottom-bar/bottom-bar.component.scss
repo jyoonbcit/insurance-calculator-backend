@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  background-color: var(--tui-base-03);
+  padding: var(--tui-padding-s);
+  width: 100%;
+}
+
+.back-button {
+  margin-left: var(--tui-padding-s);
+  --tui-padding: 1.5rem;
+}
+
+.breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+
+  > div {
+    height: 0.5rem;
+    width: 1rem;
+    background-color: var(--tui-base-01);
+  }
+}
+
+.next-button {
+  margin-right: var(--tui-padding-s);
+  --tui-padding: 1.5rem;
+}
