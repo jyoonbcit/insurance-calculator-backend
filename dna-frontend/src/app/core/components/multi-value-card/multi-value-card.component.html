@@ -1,0 +1,17 @@
+<tui-island>
+  <h3
+    class="result-header tui-text_body-l"
+    [ngClass]="compact ? 'compact' : ''">
+    {{ header }}
+  </h3>
+  <div class="value-card-content">
+    <div class="value-card-item" *ngFor="let value of values">
+      <p class="result-value tui-text_h1" [ngClass]="compact ? 'compact' : ''">
+        {{ value.value }}
+      </p>
+      <p class="result-value tui-text_m" [ngClass]="compact ? 'compact' : ''">
+        {{ value.label }}
+      </p>
+    </div>
+  </div>
+</tui-island>

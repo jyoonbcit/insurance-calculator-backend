@@ -1,0 +1,9 @@
+<tui-island>
+  <h3 class="list-header tui-text_body-xl">{{ header }}</h3>
+  <tui-elastic-container class="value-list-container">
+    <div class="value-list-content" *ngFor="let value of values">
+      <p class="value-list-label tui-text_h6">{{ value.label }}</p>
+      <p class="value-list-value">{{ value.value }}</p>
+    </div>
+  </tui-elastic-container>
+</tui-island>

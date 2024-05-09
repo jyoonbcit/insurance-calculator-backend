@@ -1,0 +1,12 @@
+tui-island {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.action-button {
+  padding: 0 1.5rem;
+}

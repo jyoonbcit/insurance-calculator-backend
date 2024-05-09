@@ -1,0 +1,12 @@
+tui-island {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.placeholder {
+  width: 256px;
+  height: 256px;
+  background-color: gray;
+}
