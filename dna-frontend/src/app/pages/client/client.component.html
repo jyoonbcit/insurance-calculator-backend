@@ -1,1 +1,11 @@
-<p>client works!</p>
+<form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+  <p class="input-container">
+    <tui-input formControlName="name" tuiTextfieldSize="s">
+      Name
+      <input tuiTextfield />
+    </tui-input>
+  </p>
+  <div>
+    <button type="submit" class="button">Test</button>
+  </div>
+</form>
