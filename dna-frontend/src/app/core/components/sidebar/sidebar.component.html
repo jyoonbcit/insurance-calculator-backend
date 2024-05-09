@@ -5,30 +5,65 @@
   (tuiActiveZoneChange)="toggle($event)">
   Show sidebar
   <div *tuiSidebar="open" class="flex column">
-    <h3>Navigation</h3>
+    <div class="nav-label flex c-center">
+      <h3>Navigation</h3>
+    </div>
     <app-horizontal-divider></app-horizontal-divider>
-    <a icon="tuiIconUser" iconAlign="left" routerLink="/client" tuiLink
+    <a
+      class="flex c-center"
+      icon="tuiIconUser"
+      iconAlign="left"
+      routerLink="/client"
+      tuiLink
       >Client</a
     >
     <app-horizontal-divider></app-horizontal-divider>
-    <a icon="tuiIconUsers" iconAlign="left" routerLink="/beneficiaries" tuiLink
+    <a
+      class="flex c-center"
+      icon="tuiIconUsers"
+      iconAlign="left"
+      routerLink="/beneficiaries"
+      tuiLink
       >Beneficiaries</a
     >
     <app-horizontal-divider></app-horizontal-divider>
-    <a icon="tuiIconBriefcase" iconAlign="left" routerLink="/businesses" tuiLink
+    <a
+      class="flex c-center"
+      icon="tuiIconBriefcase"
+      iconAlign="left"
+      routerLink="/businesses"
+      tuiLink
       >Businesses</a
     >
     <app-horizontal-divider></app-horizontal-divider>
-    <a icon="tuiIconDollarSign" iconAlign="left" routerLink="/assets" tuiLink
+    <a
+      class="flex c-center"
+      icon="tuiIconDollarSign"
+      iconAlign="left"
+      routerLink="/assets"
+      tuiLink
       >Assets</a
     >
     <app-horizontal-divider></app-horizontal-divider>
-    <a icon="tuiIconTrendingDown" iconAlign="left" routerLink="/debts" tuiLink
+    <a
+      class="flex c-center"
+      icon="tuiIconTrendingDown"
+      iconAlign="left"
+      routerLink="/debts"
+      tuiLink
       >Debts</a
     >
     <app-horizontal-divider></app-horizontal-divider>
-    <a icon="tuiIconFlag" iconAlign="left" routerLink="/goals" tuiLink>Goals</a>
     <a
+      class="flex c-center"
+      icon="tuiIconFlag"
+      iconAlign="left"
+      routerLink="/goals"
+      tuiLink
+      >Goals</a
+    >
+    <a
+      class="flex c-center"
       icon="tuiIconBarChart2"
       iconAlign="left"
       routerLink="/total-needs"
@@ -37,15 +72,25 @@
     >
     <app-horizontal-divider></app-horizontal-divider>
 
-    <h3 id="client-label">Client</h3>
+    <div class="nav-label flex c-center">
+      <h3>Client</h3>
+    </div>
     <app-horizontal-divider></app-horizontal-divider>
-    <a icon="tuiIconPlus" iconAlign="left" tuiLink>New Client</a>
+    <a class="flex c-center" icon="tuiIconPlus" iconAlign="left" tuiLink
+      >New Client</a
+    >
     <app-horizontal-divider></app-horizontal-divider>
-    <a icon="tuiIconDownload" iconAlign="left" tuiLink>Change Client</a>
+    <a class="flex c-center" icon="tuiIconDownload" iconAlign="left" tuiLink
+      >Change Client</a
+    >
     <app-horizontal-divider></app-horizontal-divider>
-    <a icon="tuiIconSave" iconAlign="left" tuiLink>Save to File</a>
+    <a class="flex c-center" icon="tuiIconSave" iconAlign="left" tuiLink
+      >Save to File</a
+    >
     <app-horizontal-divider></app-horizontal-divider>
-    <a icon="tuiIconLogOut" iconAlign="left" tuiLink>Exit to Dashboard</a>
+    <a class="flex c-center" icon="tuiIconLogOut" iconAlign="left" tuiLink
+      >Exit to Dashboard</a
+    >
     <app-horizontal-divider></app-horizontal-divider>
   </div>
 </button>
