@@ -10,7 +10,6 @@ import {
   TuiInputDateModule,
   TuiInputModule,
   TuiInputNumberModule,
-  tuiInputNumberOptionsProvider,
 } from '@taiga-ui/kit';
 
 @Component({
@@ -26,12 +25,6 @@ import {
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    tuiInputNumberOptionsProvider({
-      decimal: 'never',
-      step: 1,
-    }),
-  ],
 })
 export class ClientComponent {
   form: FormGroup;
@@ -46,19 +39,5 @@ export class ClientComponent {
       incomeReplacementMultiplier: new FormControl(),
       taxBracket: new FormControl(),
     });
-  }
-
-  async onSubmit(): Promise<void> {
-    try {
-      const name = this.form.value.name as string;
-
-      console.log(name);
-    } catch (error) {
-      if (error instanceof Error) {
-        console.log(error);
-      }
-    } finally {
-      this.form.reset();
-    }
   }
 }

@@ -1,22 +1,16 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form>
   <div class="input-container">
     <p>
-      <tui-input formControlName="name" tuiTextfieldSize="s">
+      <tui-input tuiTextfieldSize="s">
         Name
         <input tuiTextfield />
       </tui-input>
     </p>
-    <tui-input-date
-      formControlName="birthDate"
-      tuiUnfinishedValidator="Finish filling the field">
+    <tui-input-date tuiUnfinishedValidator="Finish filling the field">
       Birthdate
     </tui-input-date>
-
-    <tui-input-number formControlName="expectedRetirementAge">
-      Expected Retirement Age
-    </tui-input-number>
-  </div>
-  <div>
-    <button type="submit" class="button">Test</button>
+    <tui-input-number> Expected Retirement Age </tui-input-number>
+    <tui-input-number> Annual Income ($CAD) </tui-input-number>
+    <tui-input-number> Income Replacement Multiplier </tui-input-number>
   </div>
 </form>
