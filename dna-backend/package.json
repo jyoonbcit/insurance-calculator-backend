@@ -26,9 +26,11 @@
     "node": ">=20.0.0"
   },
   "lint-staged": {
-    "**/*": [
-      "eslint --fix",
-      "prettier --write --ignore-unknown"
+    "*.ts": [
+      "eslint --fix"
+    ],
+    "*.{json,css,scss,less,md,ts,html}": [
+      "prettier --write"
     ]
   }
 }
