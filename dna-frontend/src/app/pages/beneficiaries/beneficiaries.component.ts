@@ -21,8 +21,8 @@ export class BeneficiariesComponent {
 
   addBeneficiary() {
     const beneficiaryForm = this.formbuilder.group({
-      name: new FormControl(),
-      allocation: new FormControl(),
+      name: new FormControl(), // String
+      allocation: new FormControl(), // Number
     });
     this.beneficiaries.push(beneficiaryForm);
   }
