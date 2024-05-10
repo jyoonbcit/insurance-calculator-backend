@@ -33,7 +33,13 @@ export class BusinessesComponent {
 
   editBusiness(
     index: number,
-    updatedValues: { name?: string; valuation?: number }
+    updatedValues: {
+      name?: string;
+      valuation?: number;
+      ebitda?: number;
+      apperciationRate?: number;
+      term?: number;
+    }
   ) {
     const currentBusiness = this.businesses.at(index) as FormGroup;
     if (updatedValues.name !== undefined) {

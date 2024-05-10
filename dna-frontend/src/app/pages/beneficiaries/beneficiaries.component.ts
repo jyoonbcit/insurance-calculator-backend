@@ -31,7 +31,7 @@ export class BeneficiariesComponent {
     this.beneficiaries.removeAt(index);
   }
 
-  editBeneficiariy(
+  editBeneficiary(
     index: number,
     updatedValues: { name?: string; allocation?: number }
   ) {
