@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-beneficiaries',
@@ -29,5 +29,20 @@ export class BeneficiariesComponent {
 
   deleteBeneficiary(index: number) {
     this.beneficiaries.removeAt(index);
+  }
+
+  editBeneficiariy(
+    index: number,
+    updatedValues: { name?: string; allocation?: number }
+  ) {
+    const currentBeneficiary = this.beneficiaries.at(index) as FormGroup;
+    if (updatedValues.name !== undefined) {
+      currentBeneficiary.controls['name'].setValue(updatedValues.name);
+    }
+    if (updatedValues.allocation !== undefined) {
+      currentBeneficiary.controls['allocation'].setValue(
+        updatedValues.allocation
+      );
+    }
   }
 }
