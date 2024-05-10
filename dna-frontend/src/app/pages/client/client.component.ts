@@ -7,9 +7,11 @@ import {
 } from '@angular/forms';
 import { TuiDataListModule } from '@taiga-ui/core';
 import {
+  TuiDataListWrapperModule,
   TuiInputDateModule,
   TuiInputModule,
   TuiInputNumberModule,
+  TuiSelectModule,
 } from '@taiga-ui/kit';
 
 @Component({
@@ -20,7 +22,9 @@ import {
     TuiInputModule,
     TuiInputDateModule,
     TuiInputNumberModule,
+    TuiSelectModule,
     TuiDataListModule,
+    TuiDataListWrapperModule,
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
