@@ -1,0 +1,36 @@
+<div class="row flex m-center c-center height-full-viewport">
+  <div class="col-6 form-widget" aria-live="polite">
+    <form [formGroup]="signInForm" (ngSubmit)="onLogin()" class="form-widget">
+      <div>
+        <h1 class="margin-vertical-m">Dynamic Needs Analysis</h1>
+        <form [formGroup]="signInForm">
+          <tui-input class="padding-vertical-xs" formControlName="email">
+            Email
+            <input tuiTextfield />
+          </tui-input>
+          <tui-input class="padding-vertical-xs" formControlName="password">
+            Password
+            <input tuiTextfield type="password" />
+          </tui-input>
+        </form>
+      </div>
+      <div>
+        <tui-error [error]="error"></tui-error>
+      </div>
+      <div>
+        <button
+          tuiButton
+          class="button-full-width margin-vertical-xs"
+          appearance="primary">
+          Login
+        </button>
+        <button
+          tuiButton
+          class="button-full-width margin-vertical-xs"
+          appearance="secondary">
+          Signup
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

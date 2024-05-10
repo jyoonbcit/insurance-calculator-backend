@@ -12,9 +12,7 @@ export const routes: Routes = [
   {
     path: 'auth',
     loadComponent: () =>
-      import('./core/components/auth/auth.component').then(
-        com => com.AuthComponent
-      ),
+      import('./pages/auth/auth.component').then(com => com.AuthComponent),
     title: 'DNA | Login',
   },
   {

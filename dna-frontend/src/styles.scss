@@ -44,6 +44,10 @@
   --tui-radius-s: 0.5rem;
   --tui-radius-m: 0.75rem;
   --tui-radius-l: 1rem;
+  --margin-xs: 0.5rem;
+  --margin-s: 1rem;
+  --margin-m: 2rem;
+  --margin-l: 3rem;
 }
 
 /* Disable image dragging by default */
@@ -177,4 +181,72 @@ img {
   &-end {
     text-align: end;
   }
+}
+
+.padding {
+  &-vertical {
+    &-xs {
+      padding-top: var(--tui-padding-xs);
+      padding-bottom: var(--tui-padding-xs);
+    }
+    &-s {
+      padding-top: var(--tui-padding-s);
+      padding-bottom: var(--tui-padding-s);
+    }
+    &-m {
+      padding-top: var(--tui-padding-m);
+      padding-bottom: var(--tui-padding-m);
+    }
+    &-l {
+      padding-top: var(--tui-padding-l);
+      padding-bottom: var(--tui-padding-l);
+    }
+  }
+}
+
+.margin {
+  &-vertical {
+    &-xs {
+      margin-top: var(--margin-xs);
+      margin-bottom: var(--margin-xs);
+    }
+    &-s {
+      margin-top: var(--margin-s);
+      margin-bottom: var(--margin-s);
+    }
+    &-m {
+      margin-top: var(--margin-m);
+      margin-bottom: var(--margin-m);
+    }
+    &-l {
+      margin-top: var(--margin-l);
+      margin-bottom: var(--margin-l);
+    }
+  }
+}
+
+.height {
+  &-full-viewport {
+    height: 100vh;
+  }
+
+  &-half-viewport {
+    height: 50vh;
+  }
+
+  &-quarter-viewport {
+    height: 25vh;
+  }
+}
+
+.button {
+  padding: 5px 0px;
+
+  &-full-width {
+    width: 100%;
+  }
+}
+
+.inline-block {
+  display: inline-block;
 }
