@@ -1,0 +1,35 @@
+<div class="spacer"></div>
+<h1>Custom Components</h1>
+<h2>Subscription Card Component</h2>
+<app-subscription-card></app-subscription-card>
+<h2>Landing Page Card Component</h2>
+<app-landing-card
+  header="Dynamic Needs Analysis Calculator"
+  buttonText="Launch Calculator"></app-landing-card>
+<h2>Action Item Component</h2>
+<app-action-item
+  label="Client 1 Name"
+  actionLabel="Load"
+  [canDelete]="true"></app-action-item>
+<h2>Value Card Component</h2>
+<app-value-card [value]="valueCard1"></app-value-card>
+<h2>Compact Value Card Component</h2>
+<app-value-card [value]="valueCard2" [compact]="true"></app-value-card>
+<h2>Multi Value Card Component</h2>
+<app-multi-value-card
+  header="Total"
+  [values]="valueCards"></app-multi-value-card>
+<h2>Compact Multi Value Card Component</h2>
+<app-multi-value-card
+  header="Total"
+  [values]="valueCards"
+  [compact]="true"></app-multi-value-card>
+<h2>Line Chart Component</h2>
+<app-line-chart header="Some Data Over Time"></app-line-chart>
+<h2>Value List Card Component</h2>
+<app-value-list-card
+  header="Beneficiary Name Here"
+  [values]="valueList"></app-value-list-card>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<app-bottom-bar></app-bottom-bar>

@@ -1,0 +1,26 @@
+@mixin center-text {
+  text-align: center;
+}
+
+.subscription-header {
+  @include center-text;
+}
+
+.subscription-price {
+  @include center-text;
+}
+
+.subscription-period {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.expand-button {
+  width: 100%;
+}
+
+tui-island {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
