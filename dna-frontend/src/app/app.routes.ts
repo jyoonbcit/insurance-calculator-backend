@@ -25,4 +25,12 @@ export const routes: Routes = [
       ),
     title: 'DNA | Test Page',
   },
+  {
+    path: 'beneficiaries',
+    loadComponent: () =>
+      import('./pages/test-page/test-page.component').then(
+        com => com.TestPageComponent
+      ),
+    title: 'DNA | Beneficiaries',
+  },
 ];
