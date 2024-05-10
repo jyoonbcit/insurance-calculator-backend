@@ -1,0 +1,25 @@
+<div class="flex column m-center c-center padding-horizontal-l">
+  <h1 class="margin-vertical-m">Clients</h1>
+  <p>Select a client to begin using the calculator.</p>
+  <button
+    tuiButton
+    class="button width-full-container margin-vertical-xs"
+    appearance="primary">
+    New Client
+  </button>
+  <button
+    tuiButton
+    class="button width-full-container margin-vertical-xs"
+    appearance="secondary">
+    Load From File
+  </button>
+  <app-horizontal-divider></app-horizontal-divider>
+  <div class="flex column gap-2 c-start margin-vertical-s">
+    <app-action-item
+      *ngFor="let clientName of clientNames"
+      [label]="clientName"
+      actionLabel="Load"
+      [canDelete]="true"
+      class="width-full-container"></app-action-item>
+  </div>
+</div>

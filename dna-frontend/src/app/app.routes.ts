@@ -29,7 +29,15 @@ export const routes: Routes = [
       import('./pages/signup/signup.component').then(
         com => com.SignupComponent
       ),
-    title: 'DNA | Home',
+    title: 'DNA | Signup',
+  },
+  {
+    path: 'client-list',
+    loadComponent: () =>
+      import('./pages/client-list/client-list.component').then(
+        com => com.ClientListComponent
+      ),
+    title: 'DNA | Clients',
   },
   {
     path: 'test',
