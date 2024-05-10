@@ -1,14 +1,6 @@
 {
+  "ignorePatterns": ["**/*.json", "**/*.scss"],
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
-  "ignorePatterns": [
-    "node_modules/",
-    "dist/",
-    "*.json",
-    "*.html",
-    "*.css",
-    "*.md"
-    // Add other file types you want to ignore
-  ],
   "rules": {
     "@typescript-eslint/no-explicit-any": "warn"
   }
