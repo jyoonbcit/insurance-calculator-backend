@@ -24,6 +24,14 @@ export const routes: Routes = [
     title: 'DNA | Home',
   },
   {
+    path: 'signup',
+    loadComponent: () =>
+      import('./pages/signup/signup.component').then(
+        com => com.SignupComponent
+      ),
+    title: 'DNA | Home',
+  },
+  {
     path: 'test',
     loadComponent: () =>
       import('./pages/test-page/test-page.component').then(
