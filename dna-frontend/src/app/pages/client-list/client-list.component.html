@@ -22,6 +22,14 @@
       [label]="clientName"
       actionLabel="Load"
       [canDelete]="true"
-      class="width-full-container"></app-action-item>
+      class="width-full-container"
+      (click)="open(clientName)"></app-action-item>
   </div>
+  <app-horizontal-divider></app-horizontal-divider>
+  <button
+    tuiButton
+    class="button width-full-container margin-vertical-xs"
+    appearance="secondary">
+    Back to Dashboard
+  </button>
 </div>
