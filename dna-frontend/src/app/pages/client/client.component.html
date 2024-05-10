@@ -1,10 +1,21 @@
-<form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
-  <p class="input-container">
-    <tui-input formControlName="name" tuiTextfieldSize="s">
-      Name
-      <input tuiTextfield />
-    </tui-input>
-  </p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="input-container">
+    <p>
+      <tui-input formControlName="name" tuiTextfieldSize="s">
+        Name
+        <input tuiTextfield />
+      </tui-input>
+    </p>
+    <tui-input-date
+      formControlName="birthDate"
+      tuiUnfinishedValidator="Finish filling the field">
+      Birthdate
+    </tui-input-date>
+
+    <tui-input-number formControlName="expectedRetirementAge">
+      Expected Retirement Age
+    </tui-input-number>
+  </div>
   <div>
     <button type="submit" class="button">Test</button>
   </div>

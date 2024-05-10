@@ -13,38 +13,38 @@
 }
 
 /* Taiga UI overrides */
-:root {
-  /* Text overrides */
-  --tui-font-heading: #{t.$font-text};
-  --tui-font-text: #{t.$font-text};
-  --tui-primary-text: #{c.$primary-text};
-  --tui-text-01: #{c.$primary-text};
-  --tui-text-02: #{c.$secondary-text};
+// :root {
+//   /* Text overrides */
+//   --tui-font-heading: #{t.$font-text};
+//   --tui-font-text: #{t.$font-text};
+//   --tui-primary-text: #{c.$primary-text};
+//   --tui-text-01: #{c.$primary-text};
+//   --tui-text-02: #{c.$secondary-text};
 
-  /* Colour overrides */
-  --tui-primary: #{c.$secondary};
-  --tui-primary-hover: #{c.$tertiary};
-  --tui-primary-active: #{c.$secondary};
-  --tui-base-01: #{c.$background};
-  --tui-base-02: #{c.$secondary-background};
-  --tui-base-03: #{c.$tertiary-background};
-  --tui-link: #{c.$primary-text};
-  --tui-link-hover: #{c.$secondary-text};
+//   /* Colour overrides */
+//   --tui-primary: #{c.$secondary};
+//   --tui-primary-hover: #{c.$tertiary};
+//   --tui-primary-active: #{c.$secondary};
+//   --tui-base-01: #{c.$background};
+//   --tui-base-02: #{c.$secondary-background};
+//   --tui-base-03: #{c.$tertiary-background};
+//   --tui-link: #{c.$primary-text};
+//   --tui-link-hover: #{c.$secondary-text};
 
-  /* Size overrides */
-  // --tui-height-xs: 2rem;
-  // --tui-height-s: 2.75rem;
-  // --tui-height-m: 3.5rem;
-  // --tui-height-l: 5rem;
-  // --tui-padding-xs: 0.5rem;
-  // --tui-padding-s: 1rem;
-  // --tui-padding-m: 2rem;
-  // --tui-padding-l: 3rem;
-  // --tui-radius-xs: 0.25rem;
-  // --tui-radius-s: 0.5rem;
-  // --tui-radius-m: 0.75rem;
-  // --tui-radius-l: 1rem;
-}
+//   /* Size overrides */
+//   --tui-height-xs: 2rem;
+//   --tui-height-s: 2.75rem;
+//   --tui-height-m: 3.5rem;
+//   --tui-height-l: 5rem;
+//   --tui-padding-xs: 0.5rem;
+//   --tui-padding-s: 1rem;
+//   --tui-padding-m: 2rem;
+//   --tui-padding-l: 3rem;
+//   --tui-radius-xs: 0.25rem;
+//   --tui-radius-s: 0.5rem;
+//   --tui-radius-m: 0.75rem;
+//   --tui-radius-l: 1rem;
+// }
 
 /* Disable image dragging by default */
 img {
