@@ -16,6 +16,14 @@ export const routes: Routes = [
     title: 'DNA | Login',
   },
   {
+    path: 'landing',
+    loadComponent: () =>
+      import('./pages/landing/landing.component').then(
+        com => com.LandingComponent
+      ),
+    title: 'DNA | Home',
+  },
+  {
     path: 'test',
     loadComponent: () =>
       import('./pages/test-page/test-page.component').then(
