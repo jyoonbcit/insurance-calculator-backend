@@ -8,6 +8,7 @@ import {
 import { ActionItemComponent } from 'app/core/components/action-item/action-item.component';
 import { NgFor } from '@angular/common';
 import { HorizontalDividerComponent } from 'app/core/components/horizontal-divider/horizontal-divider.component';
+import { TUI_PROMPT } from '@taiga-ui/kit';
 
 @Component({
   selector: 'app-client-list',
@@ -39,9 +40,13 @@ export class ClientListComponent {
 
   open(clientName: string) {
     this.dialogs
-      .open(
-        `Do you want to delete ${clientName}? This action cannot be undone.`
-      )
+      .open<boolean>(TUI_PROMPT, {
+        data: {
+          content: `Do you want to delete ${clientName}? This action cannot be undone.`,
+          yes: 'Delete',
+          no: 'Cancel',
+        },
+      })
       .subscribe();
   }
 }
