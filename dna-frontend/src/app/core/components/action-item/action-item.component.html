@@ -1,6 +1,6 @@
 <tui-island>
   <span class="tui-text_body-l">{{ label }}</span>
-  <button size="s" tuiButton class="action-button">
+  <button size="s" tuiButton class="action-button" (click)="action.emit()">
     <span class="tui-text_body-l">{{ actionLabel }}</span>
   </button>
   <button
@@ -8,7 +8,8 @@
     size="s"
     tuiButton
     class="delete-button"
-    *ngIf="canDelete">
+    *ngIf="canDelete"
+    (click)="delete.emit()">
     <tui-svg src="tuiIconTrash" class="tui-icon_small"></tui-svg>
   </button>
 </tui-island>

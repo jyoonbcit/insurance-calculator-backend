@@ -38,7 +38,7 @@ export class ClientListComponent {
     private readonly dialogs: TuiDialogService
   ) {}
 
-  open(clientName: string) {
+  openDeleteDialog(clientName: string) {
     this.dialogs
       .open<boolean>(TUI_PROMPT, {
         data: {
