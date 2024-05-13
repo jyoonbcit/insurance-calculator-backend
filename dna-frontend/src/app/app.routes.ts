@@ -33,4 +33,48 @@ export const routes: Routes = [
       ),
     title: 'DNA | Client',
   },
+  {
+    path: 'beneficiaries',
+    loadComponent: () =>
+      import('./pages/beneficiaries/beneficiaries.component').then(
+        com => com.BeneficiariesComponent
+      ),
+    title: 'DNA | Beneficiaries',
+  },
+  {
+    path: 'businesses',
+    loadComponent: () =>
+      import('./pages/businesses/businesses.component').then(
+        com => com.BusinessesComponent
+      ),
+    title: 'DNA | Businesses',
+  },
+  {
+    path: 'assets',
+    loadComponent: () =>
+      import('./pages/assets/assets.component').then(
+        com => com.AssetsComponent
+      ),
+    title: 'DNA | Assets',
+  },
+  {
+    path: 'debts',
+    loadComponent: () =>
+      import('./pages/debts/debts.component').then(com => com.DebtsComponent),
+    title: 'DNA | Debts',
+  },
+  {
+    path: 'goals',
+    loadComponent: () =>
+      import('./pages/goals/goals.component').then(com => com.GoalsComponent),
+    title: 'DNA | Goals',
+  },
+  {
+    path: 'total-needs',
+    loadComponent: () =>
+      import('./pages/total-needs/total-needs.component').then(
+        com => com.TotalNeedsComponent
+      ),
+    title: 'DNA | Total Needs',
+  },
 ];
