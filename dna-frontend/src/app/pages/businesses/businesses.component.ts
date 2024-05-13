@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { BusinessesStore } from './businesses.store';
 
 @Component({
   selector: 'app-businesses',
   standalone: true,
   imports: [],
+  providers: [BusinessesStore],
   templateUrl: './businesses.component.html',
   styleUrl: './businesses.component.scss',
 })
@@ -13,7 +15,12 @@ export class BusinessesComponent {
     businesses: this.formBuilder.array([]),
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  vm$ = this.businessesStore.vm$;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private businessesStore: BusinessesStore
+  ) {}
 
   get businesses() {
     return this.form.controls['businesses'] as FormArray;
