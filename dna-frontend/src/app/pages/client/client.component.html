@@ -1,27 +1,23 @@
-<form>
-  <div class="input-container">
-    <p>
-      <tui-input tuiTextfieldSize="s">
-        Name
-        <input tuiTextfield />
-      </tui-input>
-    </p>
-    <tui-input-date tuiUnfinishedValidator="Finish filling the field">
-      Birthdate
-    </tui-input-date>
-    <tui-input-number> Expected Retirement Age </tui-input-number>
+<form class="client-form flex column m-start c-center gap-2">
+  <tui-input tuiTextfieldSize="s">
+    Name
+    <input tuiTextfield />
+  </tui-input>
+  <tui-input-date tuiUnfinishedValidator="Finish filling the field">
+    Birthdate
+  </tui-input-date>
+  <tui-input-number> Expected Retirement Age </tui-input-number>
 
-    <tui-select>
-      Provinces
-      <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
-    </tui-select>
+  <tui-select>
+    Provinces
+    <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
+  </tui-select>
 
-    <tui-input-number> Annual Income ($CAD) </tui-input-number>
-    <tui-input-number> Income Replacement Multiplier </tui-input-number>
+  <tui-input-number> Annual Income ($CAD) </tui-input-number>
+  <tui-input-number> Income Replacement Multiplier </tui-input-number>
 
-    <tui-select>
-      Tax Bracket
-      <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
-    </tui-select>
-  </div>
+  <tui-select>
+    Tax Bracket
+    <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
+  </tui-select>
 </form>
