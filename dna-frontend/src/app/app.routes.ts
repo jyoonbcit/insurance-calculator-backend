@@ -26,6 +26,14 @@ export const routes: Routes = [
     title: 'DNA | Test Page',
   },
   {
+    path: 'client',
+    loadComponent: () =>
+      import('./pages/client/client.component').then(
+        com => com.ClientComponent
+      ),
+    title: 'DNA | Client',
+  },
+  {
     path: 'beneficiaries',
     loadComponent: () =>
       import('./pages/beneficiaries/beneficiaries.component').then(
