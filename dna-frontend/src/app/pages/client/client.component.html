@@ -1,9 +1,11 @@
 <app-appbar pageName="Client"></app-appbar>
-<tui-tabs class="nav-tabs">
+<tui-tabs class="nav-tabs" [(activeItemIndex)]="activeItemIndex">
   <button tuiTab>Input Data</button>
   <button tuiTab>Results</button>
 </tui-tabs>
-<form class="client-form flex column m-start c-center gap-2">
+<form
+  class="client-form flex column m-start c-center gap-2"
+  *ngIf="activeItemIndex === 0; else elseBlock">
   <tui-input tuiTextfieldSize="s">
     Name
     <input tuiTextfield />
@@ -26,3 +28,8 @@
     <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
   </tui-select>
 </form>
+<ng-template #elseBlock>
+  <div>
+    <h1>Results</h1>
+  </div>
+</ng-template>

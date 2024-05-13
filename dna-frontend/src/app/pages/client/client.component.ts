@@ -1,10 +1,6 @@
+import { NgIf } from '@angular/common';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TuiDataListModule } from '@taiga-ui/core';
 import {
   TuiDataListWrapperModule,
@@ -29,23 +25,12 @@ import { AppbarComponent } from 'app/core/components/appbar/appbar.component';
     TuiDataListWrapperModule,
     AppbarComponent,
     TuiTabsModule,
+    NgIf,
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientComponent {
-  form: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      name: new FormControl(),
-      birthDate: new FormControl(),
-      expectedRetirementAge: new FormControl(),
-      province: new FormControl(),
-      annualIncome: new FormControl(),
-      incomeReplacementMultiplier: new FormControl(),
-      taxBracket: new FormControl(),
-    });
-  }
+  activeItemIndex = 0;
 }
