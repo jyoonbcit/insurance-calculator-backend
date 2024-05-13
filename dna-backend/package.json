@@ -9,6 +9,7 @@
   "scripts": {
     "build": "npm run build -w packages --if-present",
     "lint": "npm run lint -w packages --if-present && npm run lint -w services --if-present",
+    "format": "eslint --fix . && prettier --write .",
     "prepare": "cd .. && husky dna-backend/.husky"
   },
   "devDependencies": {
@@ -25,9 +26,11 @@
     "node": ">=20.0.0"
   },
   "lint-staged": {
-    "**/*": [
-      "eslint --fix",
-      "prettier --write --ignore-unknown"
+    "*.ts": [
+      "eslint --fix"
+    ],
+    "*.{json,css,scss,less,md,ts,html}": [
+      "prettier --write"
     ]
   }
 }
