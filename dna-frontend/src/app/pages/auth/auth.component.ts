@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TuiValidationError } from '@taiga-ui/cdk';
 import {
   TuiButtonModule,
   TuiDialogService,
@@ -32,7 +33,7 @@ export class AuthComponent {
     password: new FormControl(),
   });
 
-  error = 'Failed to login';
+  error: TuiValidationError | null = null;
 
   constructor(
     @Inject(TuiDialogService)
@@ -42,6 +43,10 @@ export class AuthComponent {
     private router: Router,
     private zone: NgZone
   ) {}
+
+  toggleErrorMessage(message: string) {
+    this.error = message ? new TuiValidationError(message) : null;
+  }
 
   async onSignup(): Promise<void> {
     try {
@@ -58,7 +63,7 @@ export class AuthComponent {
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
-        this.open(error.message);
+        this.toggleErrorMessage(error.message);
       }
     } finally {
       this.signInForm.reset();
@@ -80,7 +85,7 @@ export class AuthComponent {
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
-        this.open(error.message);
+        this.toggleErrorMessage(error.message);
       }
     } finally {
       this.signInForm.reset();
