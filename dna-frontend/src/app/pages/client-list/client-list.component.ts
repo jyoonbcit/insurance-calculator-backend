@@ -9,6 +9,7 @@ import { ActionItemComponent } from 'app/core/components/action-item/action-item
 import { NgFor } from '@angular/common';
 import { HorizontalDividerComponent } from 'app/core/components/horizontal-divider/horizontal-divider.component';
 import { TUI_PROMPT } from '@taiga-ui/kit';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-client-list',
@@ -20,6 +21,7 @@ import { TUI_PROMPT } from '@taiga-ui/kit';
     NgFor,
     TuiDialogModule,
     TuiRootModule,
+    RouterLink,
   ],
   templateUrl: './client-list.component.html',
   styleUrl: './client-list.component.scss',

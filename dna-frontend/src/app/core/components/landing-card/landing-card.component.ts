@@ -13,4 +13,5 @@ import { TuiIslandModule } from '@taiga-ui/kit';
 export class LandingCardComponent {
   @Input() header: string = '';
   @Input() buttonText: string = '';
+  @Input() linkDestination: Array<string> = ['/test'];
 }

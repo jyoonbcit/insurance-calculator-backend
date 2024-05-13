@@ -52,7 +52,9 @@ export class AuthComponent {
       if (response.error) {
         throw new Error(response.error.message);
       }
-      this.open('Check your email to complete your sign up.');
+      this.zone.run(() => {
+        this.router.navigate(['/signup']);
+      });
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
@@ -73,7 +75,7 @@ export class AuthComponent {
         throw new Error(response.error.message);
       }
       this.zone.run(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/landing']);
       });
     } catch (error) {
       if (error instanceof Error) {
