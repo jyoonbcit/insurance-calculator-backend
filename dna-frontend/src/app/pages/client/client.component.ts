@@ -12,6 +12,7 @@ import {
   TuiInputModule,
   TuiInputNumberModule,
   TuiSelectModule,
+  TuiTabsModule,
 } from '@taiga-ui/kit';
 import { AppbarComponent } from 'app/core/components/appbar/appbar.component';
 
@@ -27,6 +28,7 @@ import { AppbarComponent } from 'app/core/components/appbar/appbar.component';
     TuiDataListModule,
     TuiDataListWrapperModule,
     AppbarComponent,
+    TuiTabsModule,
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
