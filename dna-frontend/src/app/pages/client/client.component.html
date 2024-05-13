@@ -29,7 +29,21 @@
   </tui-select>
 </form>
 <ng-template #elseBlock>
-  <div>
-    <h1>Results</h1>
+  <div class="gap-2 flex column">
+    <app-value-card
+      [value]="{
+        label: 'Age',
+        value: '25'
+      }"></app-value-card>
+    <app-value-card
+      [value]="{
+        label: 'Years of Active Income',
+        value: '35'
+      }"></app-value-card>
+    <app-value-card
+      [value]="{
+        label: 'Amount Insured for Income ($CAD)',
+        value: '$1,000,000'
+      }"></app-value-card>
   </div>
 </ng-template>

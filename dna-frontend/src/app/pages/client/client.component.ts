@@ -11,6 +11,7 @@ import {
   TuiTabsModule,
 } from '@taiga-ui/kit';
 import { AppbarComponent } from 'app/core/components/appbar/appbar.component';
+import { ValueCardComponent } from 'app/core/components/value-card/value-card.component';
 
 @Component({
   selector: 'app-client',
@@ -26,6 +27,7 @@ import { AppbarComponent } from 'app/core/components/appbar/appbar.component';
     AppbarComponent,
     TuiTabsModule,
     NgIf,
+    ValueCardComponent,
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
