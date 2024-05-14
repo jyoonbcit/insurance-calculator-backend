@@ -26,14 +26,14 @@ export class BusinessesStore extends ComponentStore<BusinessesState> {
   private businesses$ = this.select(state => state.businesses);
 
   vm$ = this.select({
-    businesses: this.businesses$,
     error: this.error$,
+    businesses: this.businesses$,
   });
 
   constructor() {
     super({
-      businesses: [],
       error: null,
+      businesses: [],
     });
   }
 }
