@@ -17,7 +17,7 @@
     "http-proxy-middleware": "^3.0.0",
     "morgan": "^1.10.0",
     "zod": "^3.23.5",
-    "zod-validation-error": "^3.2.0"
+    "zod-validation-error": "^3.3.0"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
