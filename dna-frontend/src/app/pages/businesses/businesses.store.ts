@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 
 export interface Shareholder {
@@ -21,6 +22,7 @@ export interface BusinessesState {
   businesses: Business[];
 }
 
+@Injectable()
 export class BusinessesStore extends ComponentStore<BusinessesState> {
   private error$ = this.select(state => state.error);
   private businesses$ = this.select(state => state.businesses);

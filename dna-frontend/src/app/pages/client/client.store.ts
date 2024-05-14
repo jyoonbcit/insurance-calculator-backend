@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { CA_PROVINCES } from 'app/core/enums/ca-provinces.enum';
 
@@ -23,6 +24,7 @@ export interface ClientState {
   client: Client;
 }
 
+@Injectable()
 export class ClientStore extends ComponentStore<ClientState> {
   private error$ = this.select(state => state.error);
   private client$ = this.select(state => state.client);

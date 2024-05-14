@@ -1,5 +1,5 @@
-import { NgIf } from '@angular/common';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TuiDataListModule } from '@taiga-ui/core';
 import {
@@ -12,6 +12,7 @@ import {
 } from '@taiga-ui/kit';
 import { AppbarComponent } from 'app/core/components/appbar/appbar.component';
 import { ValueCardComponent } from 'app/core/components/value-card/value-card.component';
+import { ClientStore } from './client.store';
 
 @Component({
   selector: 'app-client',
@@ -27,12 +28,17 @@ import { ValueCardComponent } from 'app/core/components/value-card/value-card.co
     AppbarComponent,
     TuiTabsModule,
     NgIf,
+    AsyncPipe,
     ValueCardComponent,
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [ClientStore],
 })
 export class ClientComponent {
   activeItemIndex = 0;
+
+  vm$ = this.clientStore.vm$;
+
+  constructor(private clientStore: ClientStore) {}
 }
