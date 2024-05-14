@@ -1,10 +1,5 @@
 import { Component, Inject, NgZone } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TuiValidationError } from '@taiga-ui/cdk';
 import {
@@ -38,13 +33,12 @@ export class AuthComponent {
   constructor(
     @Inject(TuiDialogService)
     private readonly dialog: TuiDialogService,
-    private formBuilder: FormBuilder,
     private supabaseService: SupabaseService,
     private router: Router,
     private zone: NgZone
   ) {}
 
-  toggleErrorMessage(message: string) {
+  showErrorMessage(message: string) {
     this.error = message ? new TuiValidationError(message) : null;
   }
 
@@ -63,7 +57,7 @@ export class AuthComponent {
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
-        this.toggleErrorMessage(error.message);
+        this.showErrorMessage(error.message);
       }
     } finally {
       this.signInForm.reset();
@@ -85,7 +79,7 @@ export class AuthComponent {
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
-        this.toggleErrorMessage(error.message);
+        this.showErrorMessage(error.message);
       }
     } finally {
       this.signInForm.reset();

@@ -10,5 +10,6 @@ import { TuiButtonModule } from '@taiga-ui/core';
   styleUrl: './signup.component.scss',
 })
 export class SignupComponent {
+  // TODO: Read from app state
   email = 'test@test.ca';
 }
