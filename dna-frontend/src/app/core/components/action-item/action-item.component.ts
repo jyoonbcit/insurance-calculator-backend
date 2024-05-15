@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TuiSvgModule } from '@taiga-ui/core';
 import { TuiButtonModule } from '@taiga-ui/experimental';
 import { TuiIslandModule } from '@taiga-ui/kit';
@@ -15,4 +15,6 @@ export class ActionItemComponent {
   @Input() label: string = '';
   @Input() actionLabel: string = '';
   @Input() canDelete: boolean = false;
+  @Output() action = new EventEmitter();
+  @Output() delete = new EventEmitter();
 }

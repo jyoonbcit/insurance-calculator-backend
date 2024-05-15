@@ -1,14 +1,17 @@
 <tui-island>
   <span class="tui-text_body-l">{{ label }}</span>
-  <button size="s" tuiButton class="action-button">
-    <span class="tui-text_body-l">{{ actionLabel }}</span>
-  </button>
-  <button
-    appearance="accent"
-    size="s"
-    tuiButton
-    class="delete-button"
-    *ngIf="canDelete">
-    <tui-svg src="tuiIconTrash" class="tui-icon_small"></tui-svg>
-  </button>
+  <div class="button-container">
+    <button size="s" tuiButton class="action-button" (click)="action.emit()">
+      <span class="tui-text_body-l">{{ actionLabel }}</span>
+    </button>
+    <button
+      appearance="accent"
+      size="s"
+      tuiButton
+      class="delete-button"
+      *ngIf="canDelete"
+      (click)="delete.emit()">
+      <tui-svg src="tuiIconTrash" class="tui-icon_small"></tui-svg>
+    </button>
+  </div>
 </tui-island>
