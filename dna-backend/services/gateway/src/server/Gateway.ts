@@ -34,10 +34,10 @@ export class Gateway {
       })
     );
 
+    this.app.use('/api/v1', this.router);
+
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-
-    this.app.use('/api/v1', this.router);
 
     this.app.get('/healthz', async (_: Request, res: Response) =>
       res.status(200).json({
