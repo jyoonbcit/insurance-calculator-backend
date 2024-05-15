@@ -1,6 +1,6 @@
 from typing import Optional
 
-from langchain.prompts import ChatPromptTemplate
+from langchain.prompts import PromptTemplate
 from langchain_core.embeddings import Embeddings
 from langchain_core.language_models.llms import LLM
 
@@ -17,7 +17,7 @@ from lib.rag import Rag
 
 class Model:
     def __init__(self, model: LLM, embedding: Embeddings, instruction_template: str):
-        self._prompt_template = ChatPromptTemplate.from_template(instruction_template)
+        self._prompt_template = PromptTemplate.from_template(instruction_template)
         self._rag: Optional[Rag] = None
         self._model: LLM = model
         self._embedding: Embeddings = embedding
