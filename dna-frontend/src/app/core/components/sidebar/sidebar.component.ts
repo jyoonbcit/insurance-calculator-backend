@@ -18,10 +18,4 @@ import { HorizontalDividerComponent } from '../horizontal-divider/horizontal-div
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
-export class SidebarComponent {
-  open = false;
-
-  toggle(open: boolean) {
-    this.open = open;
-  }
-}
+export class SidebarComponent {}

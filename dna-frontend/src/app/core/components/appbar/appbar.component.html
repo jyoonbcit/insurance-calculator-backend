@@ -1,9 +1,12 @@
 <header>
+  <div *tuiSidebar="open">
+    <app-sidebar></app-sidebar>
+  </div>
   <tui-app-bar class="app-bar">
     <tui-svg
       class="sidebar-icon-toggle"
       tuiSlot="left"
-      (click)="test()"
+      (click)="toggle(true)"
       src="tuiIconMenuLarge"></tui-svg>
     {{ pageName }}
   </tui-app-bar>
