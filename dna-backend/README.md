@@ -57,6 +57,7 @@ The service must then be registered to the gateway in `services/gateway/src/inde
     NODE_ENV: z.enum(NODE_ENV).default(DEFAULT_NODE_ENV),
     HOST: z.string().url().or(z.string().ip()).default(DEFAULT_HOST),
     GATEWAY_PORT: z.string().default(DEFAULT_API_PORT).transform(port => parseInt(port, 10)),
++   ADVISOR_HOST: z.string().default(DEFAULT_HOST),
 +   ADVISOR_PORT: z.string().default(DEFAULT_ADVISOR_PORT).transform(port => parseInt(port, 10)),
   });
 
@@ -64,9 +65,10 @@ The service must then be registered to the gateway in `services/gateway/src/inde
   /* [...] */
 
 + const ADVISOR_VERSION = 1;
++ const ADVISOR_HOST = env.ADVISOR_HOST;
 + const ADVISOR_PORT = env.ADVISOR_PORT;
 
   const server = new Gateway();
-+ server.registerService('/advisor', ADVISOR_PORT, ADVISOR_VERSION);
++ server.registerService('/advisor', ADVISOR_HOST, ADVISOR_PORT, ADVISOR_VERSION);
   server.start(HOST, PORT);
 ```
