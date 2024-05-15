@@ -9,25 +9,28 @@
   "scripts": {
     "build": "npm run build -w packages --if-present",
     "lint": "npm run lint -w packages --if-present && npm run lint -w services --if-present",
+    "format": "eslint --fix . && prettier --write .",
     "prepare": "cd .. && husky dna-backend/.husky"
   },
   "devDependencies": {
     "@eslint/js": "^9.1.1",
     "@types/eslint": "^8.56.10",
     "eslint": "^8.57.0",
-    "globals": "^15.1.0",
+    "globals": "^15.2.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "3.2.5",
-    "typescript-eslint": "^7.8.0"
+    "typescript-eslint": "^7.9.0"
   },
   "engines": {
     "node": ">=20.0.0"
   },
   "lint-staged": {
-    "**/*": [
-      "eslint --fix",
-      "prettier --write --ignore-unknown"
+    "*.ts": [
+      "eslint --fix"
+    ],
+    "*.{json,css,scss,less,md,ts,html}": [
+      "prettier --write"
     ]
   }
 }
