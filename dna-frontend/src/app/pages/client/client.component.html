@@ -12,15 +12,19 @@
       Name
       <input tuiTextfield (blur)="onBlur()" />
     </tui-input>
+
     <tui-input-date
       toNativeDate
       [max]="maxDate"
       tuiUnfinishedValidator="Finish filling the field"
       formControlName="birthdate">
       Birthdate
+      <input tuiTextfield (blur)="onBlur()" />
     </tui-input-date>
+
     <tui-input-number formControlName="expectedRetirementAge">
       Expected Retirement Age
+      <input tuiTextfield (blur)="onBlur()" />
     </tui-input-number>
 
     <tui-select formControlName="province">
@@ -28,18 +32,23 @@
       <tui-data-list-wrapper
         *tuiDataList
         [items]="provinceOptions"></tui-data-list-wrapper>
+      <input tuiTextfield (blur)="onBlur()" />
     </tui-select>
 
     <tui-input-number formControlName="annualIncome">
       Annual Income ($CAD)
+      <input tuiTextfield (blur)="onBlur()" />
     </tui-input-number>
+
     <tui-input-number formControlName="incomeReplacementMultiplier">
       Income Replacement Multiplier
+      <input tuiTextfield (blur)="onBlur()" />
     </tui-input-number>
 
     <tui-select formControlName="selectedBracket">
       Tax Bracket
       <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
+      <input tuiTextfield (blur)="onBlur()" />
     </tui-select>
   </form>
   <ng-template #elseBlock>
@@ -52,12 +61,18 @@
       <app-value-card
         [value]="{
           label: 'Years of Active Income',
-          value: (vm.client.expectedRetirementAge || 'N/A').toString()
+          value: (
+            (vm.client.expectedRetirementAge || 0) -
+              (vm.client.birthdate | bdAge) | nonNegative
+          ).toString()
         }"></app-value-card>
       <app-value-card
         [value]="{
           label: 'Amount Insured for Income ($CAD)',
-          value: (vm.client.annualIncome | currency) || '$0.00'
+          value:
+            ((vm.client.annualIncome || 0) *
+              (vm.client.incomeReplacementMultiplier || 0) | currency) ||
+            '$0.00'
         }"></app-value-card>
     </div>
   </ng-template>

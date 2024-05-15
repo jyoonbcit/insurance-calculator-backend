@@ -17,6 +17,7 @@ import { Client } from 'app/core/models/client.model';
 import { CA_PROVINCES } from 'app/core/enums/ca-provinces.enum';
 import { TUI_DATE_FORMAT, TUI_DATE_SEPARATOR, TuiDay } from '@taiga-ui/cdk';
 import { BirthDateAgePipe } from 'app/shared/pipes/age.pipe';
+import { NonNegativePipe } from 'app/shared/pipes/non-negative.pipe';
 
 @Component({
   selector: 'app-client',
@@ -36,6 +37,7 @@ import { BirthDateAgePipe } from 'app/shared/pipes/age.pipe';
     AsyncPipe,
     CurrencyPipe,
     BirthDateAgePipe,
+    NonNegativePipe,
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
@@ -79,9 +81,5 @@ export class ClientComponent implements OnInit, OnDestroy {
 
   onBlur(): void {
     this.clientStore.putClient();
-  }
-
-  onUpdate(client: Client): void {
-    this.clientStore.setClient(client);
   }
 }
