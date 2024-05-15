@@ -54,13 +54,11 @@ export class Gateway {
 
   public registerService(
     basePath: string,
+    serviceHost: string,
     servicePort: number,
     serviceApiVersion: number
   ) {
-    const targetServiceUrl = new URL(
-      `/api/v${serviceApiVersion}`,
-      'http://0.0.0.0'
-    );
+    const targetServiceUrl = new URL(`/api/v${serviceApiVersion}`, serviceHost);
     targetServiceUrl.port = servicePort.toString();
 
     this.services[basePath] = targetServiceUrl;
