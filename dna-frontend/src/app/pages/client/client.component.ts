@@ -1,6 +1,6 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TuiDataListModule } from '@taiga-ui/core';
 import {
   TuiDataListWrapperModule,
@@ -14,6 +14,7 @@ import { AppbarComponent } from 'app/core/components/appbar/appbar.component';
 import { ValueCardComponent } from 'app/core/components/value-card/value-card.component';
 import { ClientStore } from './client.store';
 import { Client } from 'app/core/models/client.model';
+import { CA_PROVINCES } from 'app/core/enums/ca-provinces.enum';
 
 @Component({
   selector: 'app-client',
@@ -39,14 +40,27 @@ import { Client } from 'app/core/models/client.model';
 export class ClientComponent implements OnInit, OnDestroy {
   activeItemIndex = 0;
 
-  // Create the form here for the client fields
-
   vm$ = this.clientStore.vm$;
+
+  readonly provinceOptions = Object.values(CA_PROVINCES);
+
+  readonly clientForm = new FormGroup({
+    name: new FormControl(),
+    birthdate: new FormControl(),
+    province: new FormControl(),
+    annualIncome: new FormControl(),
+    incomeReplacementMultiplier: new FormControl(),
+    selectedBracket: new FormControl(),
+    expectedRetirementAge: new FormControl(),
+  });
 
   constructor(private readonly clientStore: ClientStore) {}
 
   ngOnInit(): void {
     this.clientStore.getClient();
+    this.clientForm.valueChanges.subscribe(formData => {
+      this.clientStore.setClient(formData as Client);
+    });
   }
 
   ngOnDestroy(): void {

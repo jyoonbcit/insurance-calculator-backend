@@ -6,25 +6,36 @@
   </tui-tabs>
   <form
     class="client-form flex column m-start c-center gap-2"
+    [formGroup]="clientForm"
     *ngIf="activeItemIndex === 0; else elseBlock">
-    <tui-input tuiTextfieldSize="s">
+    <tui-input tuiTextfieldSize="s" formControlName="name">
       Name
       <input tuiTextfield />
     </tui-input>
-    <tui-input-date tuiUnfinishedValidator="Finish filling the field">
+    <tui-input-date
+      tuiUnfinishedValidator="Finish filling the field"
+      formControlName="birthdate">
       Birthdate
     </tui-input-date>
-    <tui-input-number> Expected Retirement Age </tui-input-number>
+    <tui-input-number formControlName="expectedRetirementAge">
+      Expected Retirement Age
+    </tui-input-number>
 
-    <tui-select>
-      Provinces
-      <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
+    <tui-select formControlName="province">
+      Province
+      <tui-data-list-wrapper
+        *tuiDataList
+        [items]="provinceOptions"></tui-data-list-wrapper>
     </tui-select>
 
-    <tui-input-number> Annual Income ($CAD) </tui-input-number>
-    <tui-input-number> Income Replacement Multiplier </tui-input-number>
+    <tui-input-number formControlName="annualIncome">
+      Annual Income ($CAD)
+    </tui-input-number>
+    <tui-input-number formControlName="incomeReplacementMultiplier">
+      Income Replacement Multiplier
+    </tui-input-number>
 
-    <tui-select>
+    <tui-select formControlName="selectedBracket">
       Tax Bracket
       <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
     </tui-select>
