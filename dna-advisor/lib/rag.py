@@ -54,10 +54,7 @@ def chunk(documents: List[Document]):
 
 class Rag:
     def __init__(self, documents: Optional[List[Document]], embedding: Embeddings):
-        self._db = Chroma(
-            persist_directory="./chroma",
-            embedding_function=embedding
-        )
+        self._db = Chroma(persist_directory="./chroma", embedding_function=embedding)
 
         if documents:
             self.add_documents(documents)
@@ -66,11 +63,13 @@ class Rag:
     def read_documents(dir: str):
         print("Loading documents...")
         try:
-            loader = DirectoryLoader(dir, glob="**/*", use_multithreading=True, show_progress=True)
+            loader = DirectoryLoader(
+                dir, glob="**/*", use_multithreading=True, show_progress=True
+            )
             return loader.load()
             # return None  # Disable document loading
         except FileNotFoundError:
-            print(f"Documents folder \"{dir}\" not found, skipping document processing.")
+            print(f'Documents folder "{dir}" not found, skipping document processing.')
             return None
 
         # TODO: Figure out a way to only process new documents.

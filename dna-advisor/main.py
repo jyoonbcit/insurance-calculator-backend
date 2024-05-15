@@ -1,5 +1,4 @@
 import os
-import json
 import argparse
 
 from lib.model import GPT4AllModel
@@ -36,9 +35,18 @@ if __name__ == "__main__":
     DOCUMENTS_DIR = os.getenv("DOCUMENTS", "./documents")
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--host", help="Address to bind the application to", default=DEFAULT_ADDRESS)
-    parser.add_argument("--port", help="Port to bind the application to", default=DEFAULT_PORT)
-    parser.add_argument("-d", "--documents", help="Define the root documents directory", default=DOCUMENTS_DIR)
+    parser.add_argument(
+        "--host", help="Address to bind the application to", default=DEFAULT_ADDRESS
+    )
+    parser.add_argument(
+        "--port", help="Port to bind the application to", default=DEFAULT_PORT
+    )
+    parser.add_argument(
+        "-d",
+        "--documents",
+        help="Define the root documents directory",
+        default=DOCUMENTS_DIR,
+    )
     args = parser.parse_args()
 
     # Define the model to download
