@@ -36,7 +36,12 @@ class Model:
             print(formatted_prompt)
             print("=====")
 
-            return self._model.invoke(formatted_prompt).strip()
+            response = self._model.invoke(formatted_prompt).strip()
+
+            if response.startswith(': '):
+                response = response[2:]
+
+            return response
 
         return None
 
