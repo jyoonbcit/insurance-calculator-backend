@@ -65,9 +65,13 @@ class Rag:
     @staticmethod
     def read_documents(dir: str):
         print("Loading documents...")
-        loader = DirectoryLoader(dir, glob="**/*", use_multithreading=True, show_progress=True)
-        return loader.load()
-        # return None  # Disable document loading
+        try:
+            loader = DirectoryLoader(dir, glob="**/*", use_multithreading=True, show_progress=True)
+            return loader.load()
+            # return None  # Disable document loading
+        except FileNotFoundError:
+            print(f"Documents folder \"{dir}\" not found, skipping document processing.")
+            return None
 
         # TODO: Figure out a way to only process new documents.
         # NOTE: Loading documents takes some time, even more so when it includes OCR in PDFs.
