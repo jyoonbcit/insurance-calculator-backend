@@ -32,6 +32,8 @@ jobs:
       - name: Install pre-commit
         run: pip install pre-commit
         working-directory: dna-advisor
+      - name: Unsetting core.hooksPath
+        run: git config --unset-all core.hooksPath
       - name: Install pre-commit hooks
         run: pre-commit install
       - name: Run pre-commit Hooks
