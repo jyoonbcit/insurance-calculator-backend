@@ -1,13 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { TuiAppBarModule } from '@taiga-ui/experimental';
-import { TuiSvgModule } from '@taiga-ui/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
 
 @Component({
   selector: 'app-appbar',
   standalone: true,
-  imports: [TuiAppBarModule, TuiSvgModule, SidebarComponent, TuiSidebarModule],
+  imports: [TuiAppBarModule, SidebarComponent],
   templateUrl: './appbar.component.html',
   styleUrl: './appbar.component.scss',
 })

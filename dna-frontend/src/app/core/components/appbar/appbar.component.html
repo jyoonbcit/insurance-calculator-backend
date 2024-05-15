@@ -1,13 +1,7 @@
 <header>
-  <div *tuiSidebar="open">
-    <app-sidebar></app-sidebar>
-  </div>
   <tui-app-bar class="app-bar">
-    <tui-svg
-      class="sidebar-icon-toggle"
-      tuiSlot="left"
-      (click)="toggle(true)"
-      src="tuiIconMenuLarge"></tui-svg>
+    <app-sidebar></app-sidebar>
+    <!-- This component has the toggle button in it.-->
     {{ pageName }}
   </tui-app-bar>
 </header>

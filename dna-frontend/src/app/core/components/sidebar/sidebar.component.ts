@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
-import { TuiLinkModule } from '@taiga-ui/core';
+import { TuiLinkModule, TuiSvgModule } from '@taiga-ui/core';
 import { HorizontalDividerComponent } from '../horizontal-divider/horizontal-divider.component';
 
 @Component({
@@ -14,8 +14,16 @@ import { HorizontalDividerComponent } from '../horizontal-divider/horizontal-div
     TuiLinkModule,
     RouterModule,
     HorizontalDividerComponent,
+    TuiSvgModule,
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+  open = false;
+
+  toggle(open: boolean) {
+    this.open = open;
+    console.log(this.open);
+  }
+}
