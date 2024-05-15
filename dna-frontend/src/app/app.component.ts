@@ -9,20 +9,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TUI_DIALOG_CLOSES_ON_BACK } from '@taiga-ui/cdk';
 import { of } from 'rxjs';
-import { AuthComponent } from './pages/auth/auth.component';
 import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    TuiRootModule,
-    TuiDialogModule,
-    TuiAlertModule,
-    AuthComponent,
-    NgIf,
-  ],
+  imports: [RouterOutlet, TuiRootModule, TuiDialogModule, TuiAlertModule, NgIf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [
