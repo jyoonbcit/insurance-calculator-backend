@@ -15,6 +15,8 @@ import { ValueCardComponent } from 'app/core/components/value-card/value-card.co
 import { ClientStore } from './client.store';
 import { Client } from 'app/core/models/client.model';
 import { CA_PROVINCES } from 'app/core/enums/ca-provinces.enum';
+import { TUI_DATE_FORMAT, TUI_DATE_SEPARATOR, TuiDay } from '@taiga-ui/cdk';
+import { BirthDateAgePipe } from 'app/shared/pipes/age.pipe';
 
 @Component({
   selector: 'app-client',
@@ -28,11 +30,12 @@ import { CA_PROVINCES } from 'app/core/enums/ca-provinces.enum';
     TuiDataListModule,
     TuiDataListWrapperModule,
     AppbarComponent,
+    ValueCardComponent,
     TuiTabsModule,
     NgIf,
     AsyncPipe,
-    ValueCardComponent,
     CurrencyPipe,
+    BirthDateAgePipe,
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
@@ -42,15 +45,15 @@ import { CA_PROVINCES } from 'app/core/enums/ca-provinces.enum';
       decimalSeparator: '.',
       thousandSeparator: ',',
     }),
+    { provide: TUI_DATE_FORMAT, useValue: 'YMD' },
+    { provide: TUI_DATE_SEPARATOR, useValue: '/' },
   ],
 })
 export class ClientComponent implements OnInit, OnDestroy {
   activeItemIndex = 0;
-
   vm$ = this.clientStore.vm$;
-
   readonly provinceOptions = Object.values(CA_PROVINCES);
-
+  readonly maxDate = TuiDay.currentLocal();
   readonly clientForm = new FormGroup({
     name: new FormControl(),
     birthdate: new FormControl(),

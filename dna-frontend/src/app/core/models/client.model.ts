@@ -3,7 +3,7 @@ import { Bracket } from './bracket.model';
 
 export interface Client {
   name: string | null | undefined;
-  birthdate: string | null | undefined;
+  birthdate: Date | null | undefined;
   province: CA_PROVINCES | null | undefined;
   annualIncome: number | null | undefined;
   incomeReplacementMultiplier: number | null | undefined;

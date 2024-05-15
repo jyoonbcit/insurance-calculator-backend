@@ -12,7 +12,7 @@ export const initialClientState: ClientState = {
   error: null,
   client: {
     name: '',
-    birthdate: '',
+    birthdate: new Date(),
     province: CA_PROVINCES.OTHER,
     annualIncome: 0,
     incomeReplacementMultiplier: 0,

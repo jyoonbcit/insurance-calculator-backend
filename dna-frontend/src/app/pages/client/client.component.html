@@ -13,6 +13,8 @@
       <input tuiTextfield (blur)="onBlur()" />
     </tui-input>
     <tui-input-date
+      toNativeDate
+      [max]="maxDate"
       tuiUnfinishedValidator="Finish filling the field"
       formControlName="birthdate">
       Birthdate
@@ -45,7 +47,7 @@
       <app-value-card
         [value]="{
           label: 'Age',
-          value: vm.client.birthdate || 'N/A'
+          value: (vm.client.birthdate | bdAge).toString()
         }"></app-value-card>
       <app-value-card
         [value]="{
@@ -55,7 +57,7 @@
       <app-value-card
         [value]="{
           label: 'Amount Insured for Income ($CAD)',
-          value: (vm.client.annualIncome | currency) || 'N/A'
+          value: (vm.client.annualIncome | currency) || '$0.00'
         }"></app-value-card>
     </div>
   </ng-template>
