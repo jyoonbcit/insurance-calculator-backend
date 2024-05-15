@@ -1,5 +1,5 @@
 import { AsyncPipe, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TuiDataListModule } from '@taiga-ui/core';
 import {
@@ -12,7 +12,8 @@ import {
 } from '@taiga-ui/kit';
 import { AppbarComponent } from 'app/core/components/appbar/appbar.component';
 import { ValueCardComponent } from 'app/core/components/value-card/value-card.component';
-import { Client, ClientStore } from './client.store';
+import { ClientStore } from './client.store';
+import { Client } from 'app/core/models/client.model';
 
 @Component({
   selector: 'app-client',
@@ -35,22 +36,28 @@ import { Client, ClientStore } from './client.store';
   styleUrl: './client.component.scss',
   providers: [ClientStore],
 })
-export class ClientComponent implements OnInit {
+export class ClientComponent implements OnInit, OnDestroy {
   activeItemIndex = 0;
 
   // Create the form here for the client fields
 
   vm$ = this.clientStore.vm$;
 
-  constructor(private clientStore: ClientStore) {}
+  constructor(private readonly clientStore: ClientStore) {}
 
   ngOnInit(): void {
     this.clientStore.getClient();
   }
 
-  onUpdate(client: Client): void {
-    this.clientStore.putClient(client);
+  ngOnDestroy(): void {
+    this.clientStore.putClient();
   }
 
-  // Modify on component destruction, call save to DB
+  onBlur(): void {
+    this.clientStore.putClient();
+  }
+
+  onUpdate(client: Client): void {
+    this.clientStore.setClient(client);
+  }
 }
