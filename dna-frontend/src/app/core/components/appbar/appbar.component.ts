@@ -11,4 +11,8 @@ import { TuiSvgModule } from '@taiga-ui/core';
 })
 export class AppbarComponent {
   @Input() pageName = '';
+
+  test = () => {
+    console.log('Button clicked');
+  };
 }
