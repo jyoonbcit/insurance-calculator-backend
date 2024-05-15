@@ -10,7 +10,7 @@
     *ngIf="activeItemIndex === 0; else elseBlock">
     <tui-input tuiTextfieldSize="s" formControlName="name">
       Name
-      <input tuiTextfield />
+      <input tuiTextfield (blur)="onBlur()" />
     </tui-input>
     <tui-input-date
       tuiUnfinishedValidator="Finish filling the field"
@@ -45,17 +45,17 @@
       <app-value-card
         [value]="{
           label: 'Age',
-          value: '25'
+          value: vm.client.birthdate || 'N/A'
         }"></app-value-card>
       <app-value-card
         [value]="{
           label: 'Years of Active Income',
-          value: '35'
+          value: (vm.client.expectedRetirementAge || 'N/A').toString()
         }"></app-value-card>
       <app-value-card
         [value]="{
           label: 'Amount Insured for Income ($CAD)',
-          value: '$1,000,000'
+          value: (vm.client.annualIncome | currency) || 'N/A'
         }"></app-value-card>
     </div>
   </ng-template>

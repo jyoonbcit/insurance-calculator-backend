@@ -1,7 +1,7 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, CurrencyPipe, NgIf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TuiDataListModule } from '@taiga-ui/core';
+import { TuiDataListModule, tuiNumberFormatProvider } from '@taiga-ui/core';
 import {
   TuiDataListWrapperModule,
   TuiInputDateModule,
@@ -32,10 +32,17 @@ import { CA_PROVINCES } from 'app/core/enums/ca-provinces.enum';
     NgIf,
     AsyncPipe,
     ValueCardComponent,
+    CurrencyPipe,
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
-  providers: [ClientStore],
+  providers: [
+    ClientStore,
+    tuiNumberFormatProvider({
+      decimalSeparator: '.',
+      thousandSeparator: ',',
+    }),
+  ],
 })
 export class ClientComponent implements OnInit, OnDestroy {
   activeItemIndex = 0;
