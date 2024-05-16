@@ -1,30 +1,46 @@
 import { Component, Inject, NgZone } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TuiDialogService } from '@taiga-ui/core';
+import { TuiValidationError } from '@taiga-ui/cdk';
+import {
+  TuiButtonModule,
+  TuiDialogService,
+  TuiErrorModule,
+} from '@taiga-ui/core';
+import { TuiInputModule } from '@taiga-ui/kit';
 import { SupabaseService } from 'app/core/services/supabase.service';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [
+    ReactiveFormsModule,
+    TuiInputModule,
+    TuiButtonModule,
+    TuiErrorModule,
+  ],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })
 export class AuthComponent {
-  signInForm = this.formBuilder.group({
-    email: '',
-    password: '',
+  signInForm = new FormGroup({
+    email: new FormControl(),
+    password: new FormControl(),
   });
+
+  error: TuiValidationError | null = null;
 
   constructor(
     @Inject(TuiDialogService)
     private readonly dialog: TuiDialogService,
-    private formBuilder: FormBuilder,
     private supabaseService: SupabaseService,
     private router: Router,
     private zone: NgZone
   ) {}
+
+  showErrorMessage(message: string) {
+    this.error = message ? new TuiValidationError(message) : null;
+  }
 
   async onSignup(): Promise<void> {
     try {
@@ -35,11 +51,13 @@ export class AuthComponent {
       if (response.error) {
         throw new Error(response.error.message);
       }
-      this.open('Check your email to complete your sign up.');
+      this.zone.run(() => {
+        this.router.navigate(['/signup']);
+      });
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
-        this.open(error.message);
+        this.showErrorMessage(error.message);
       }
     } finally {
       this.signInForm.reset();
@@ -56,12 +74,12 @@ export class AuthComponent {
         throw new Error(response.error.message);
       }
       this.zone.run(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/landing']);
       });
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
-        this.open(error.message);
+        this.showErrorMessage(error.message);
       }
     } finally {
       this.signInForm.reset();

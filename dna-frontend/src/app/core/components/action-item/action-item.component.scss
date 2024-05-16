@@ -7,6 +7,14 @@ tui-island {
   padding: 1rem;
 }
 
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
 .action-button {
   padding: 0 1.5rem;
 }

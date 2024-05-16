@@ -12,10 +12,32 @@ export const routes: Routes = [
   {
     path: 'auth',
     loadComponent: () =>
-      import('./core/components/auth/auth.component').then(
-        com => com.AuthComponent
-      ),
+      import('./pages/auth/auth.component').then(com => com.AuthComponent),
     title: 'DNA | Login',
+  },
+  {
+    path: 'landing',
+    loadComponent: () =>
+      import('./pages/landing/landing.component').then(
+        com => com.LandingComponent
+      ),
+    title: 'DNA | Home',
+  },
+  {
+    path: 'signup',
+    loadComponent: () =>
+      import('./pages/signup/signup.component').then(
+        com => com.SignupComponent
+      ),
+    title: 'DNA | Signup',
+  },
+  {
+    path: 'client-list',
+    loadComponent: () =>
+      import('./pages/client-list/client-list.component').then(
+        com => com.ClientListComponent
+      ),
+    title: 'DNA | Clients',
   },
   {
     path: 'test',

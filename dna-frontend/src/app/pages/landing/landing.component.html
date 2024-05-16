@@ -1,0 +1,19 @@
+<div class="flex column m-center c-center padding-horizontal-l">
+  <h1 class="main-heading">Welcome back, {{ advisorName }}</h1>
+  <app-landing-card
+    header="Dynamic Needs Analysis Calculator"
+    buttonText="Launch Calculator"
+    class="margin-vertical-s width-full-container"
+    [linkDestination]="['/client-list']"></app-landing-card>
+  <app-landing-card
+    header="Robo-Advisor"
+    buttonText="Chat Now"
+    class="margin-vertical-s width-full-container"></app-landing-card>
+  <button
+    tuiButton
+    class="button width-full-container margin-vertical-xs"
+    appearance="secondary"
+    (click)="signOut()">
+    Log Out
+  </button>
+</div>

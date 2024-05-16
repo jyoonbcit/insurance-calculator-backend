@@ -34,10 +34,10 @@ export class Gateway {
       })
     );
 
+    this.app.use('/api/v1', this.router);
+
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-
-    this.app.use('/api/v1', this.router);
 
     this.app.get('/healthz', async (_: Request, res: Response) =>
       res.status(200).json({
@@ -54,13 +54,11 @@ export class Gateway {
 
   public registerService(
     basePath: string,
+    serviceHost: string,
     servicePort: number,
     serviceApiVersion: number
   ) {
-    const targetServiceUrl = new URL(
-      `/api/v${serviceApiVersion}`,
-      'http://0.0.0.0'
-    );
+    const targetServiceUrl = new URL(`/api/v${serviceApiVersion}`, serviceHost);
     targetServiceUrl.port = servicePort.toString();
 
     this.services[basePath] = targetServiceUrl;
