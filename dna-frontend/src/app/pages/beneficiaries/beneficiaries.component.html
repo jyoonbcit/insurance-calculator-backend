@@ -21,6 +21,10 @@
     <!-- Pressing this button will add a new beneficiary info section which is by default empty. -->
   </form>
   <ng-template #elseBlock>
-    <h1>Results Works!</h1>
+    <div class="client-result-container flex column c-center gap-2">
+      <app-pie-chart header="Desired Beneficiary Allocation"></app-pie-chart>
+      <app-pie-chart header="Real Beneficiary Distribution"></app-pie-chart>
+      <app-bar-chart header="Asset Value Distribution"></app-bar-chart>
+    </div>
   </ng-template>
 </app-calculator>
