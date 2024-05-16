@@ -1,1 +1,52 @@
-<p>total-needs works!</p>
+<app-calculator>
+  <tui-tabs
+    class="nav-tabs flex row m-center"
+    [(activeItemIndex)]="activeItemIndex">
+    <button tuiTab>Input Data</button>
+    <button tuiTab>Results</button>
+  </tui-tabs>
+  <form
+    class="client-form flex column m-start c-center gap-2"
+    *ngIf="activeItemIndex === 0; else elseBlock">
+    <tui-input tuiTextfieldSize="s">
+      Name
+      <input tuiTextfield />
+    </tui-input>
+    <tui-input-date tuiUnfinishedValidator="Finish filling the field">
+      Birthdate
+    </tui-input-date>
+    <tui-input-number> Expected Retirement Age </tui-input-number>
+
+    <tui-select>
+      Provinces
+      <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
+    </tui-select>
+
+    <tui-input-number> Annual Income ($CAD) </tui-input-number>
+    <tui-input-number> Income Replacement Multiplier </tui-input-number>
+
+    <tui-select>
+      Tax Bracket
+      <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
+    </tui-select>
+  </form>
+  <ng-template #elseBlock>
+    <div class="client-result-container gap-2 flex column c-center">
+      <app-value-card
+        [value]="{
+          label: 'Age',
+          value: '25'
+        }"></app-value-card>
+      <app-value-card
+        [value]="{
+          label: 'Years of Active Income',
+          value: '35'
+        }"></app-value-card>
+      <app-value-card
+        [value]="{
+          label: 'Amount Insured for Income ($CAD)',
+          value: '$1,000,000'
+        }"></app-value-card>
+    </div>
+  </ng-template>
+</app-calculator>
