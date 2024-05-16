@@ -10,8 +10,8 @@ import {
   TuiSelectModule,
   TuiTabsModule,
 } from '@taiga-ui/kit';
-import { AppbarComponent } from 'app/core/components/appbar/appbar.component';
 import { ValueCardComponent } from 'app/core/components/value-card/value-card.component';
+import { CalculatorComponent } from '../calculator/calculator.component';
 
 @Component({
   selector: 'app-client',
@@ -24,10 +24,10 @@ import { ValueCardComponent } from 'app/core/components/value-card/value-card.co
     TuiSelectModule,
     TuiDataListModule,
     TuiDataListWrapperModule,
-    AppbarComponent,
     TuiTabsModule,
     NgIf,
     ValueCardComponent,
+    CalculatorComponent,
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
