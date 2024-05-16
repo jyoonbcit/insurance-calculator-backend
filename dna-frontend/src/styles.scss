@@ -29,7 +29,7 @@
   --tui-base-02: #{c.$secondary-background};
   --tui-base-03: #{c.$tertiary-background};
   --tui-link: #{c.$primary-text};
-  --tui-link-hover: #{c.$secondary-text};
+  --tui-link-hover: #{c.$tertiary};
 }
 
 /* Disable image dragging by default */
@@ -273,9 +273,4 @@ img {
   text-align: center;
   line-height: normal;
   margin-top: var(--margin-l);
-}
-
-.nav-tabs {
-  margin-bottom: 1em;
-  box-shadow: none;
 }
