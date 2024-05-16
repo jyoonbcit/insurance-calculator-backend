@@ -44,6 +44,8 @@
       <input tuiTextfield />
     </tui-input>
 
+    <!-- Populate dynamically -->
+
     <p>business 1 Key-Man: shareholder - Need $5,000,000</p>
     <tui-input-slider formControlName="totalNeedsForm" [max]="100" [quantum]="1"
       >Priority</tui-input-slider
@@ -68,21 +70,35 @@
   </form>
   <ng-template #elseBlock>
     <div class="total-needs-result-container gap-2 flex column c-center">
-      <app-value-card
-        [value]="{
-          label: 'Age',
-          value: '25'
-        }"></app-value-card>
-      <app-value-card
-        [value]="{
-          label: 'Years of Active Income',
-          value: '35'
-        }"></app-value-card>
-      <app-value-card
-        [value]="{
-          label: 'Amount Insured for Income ($CAD)',
-          value: '$1,000,000'
-        }"></app-value-card>
+      <app-multi-value-card
+        header="Total"
+        [values]="testValues"
+        [compact]="false"></app-multi-value-card>
+      <app-multi-value-card
+        header="Income Replacement"
+        [values]="testValues"
+        [compact]="true"></app-multi-value-card>
+      <app-multi-value-card
+        header="Estate Tax Liability"
+        [values]="testValues"
+        [compact]="true"></app-multi-value-card>
+      <app-multi-value-card
+        header="Equalization"
+        [values]="testValues"
+        [compact]="true"></app-multi-value-card>
+      <app-multi-value-card
+        header="Goal Shortfall"
+        [values]="testValues"
+        [compact]="true"></app-multi-value-card>
+      <!-- Populate dynamically -->
+      <app-multi-value-card
+        header="business Key-Man: shareholder"
+        [values]="testValues"
+        [compact]="true"></app-multi-value-card>
+      <app-multi-value-card
+        header="business Shareholder Agreement: shareholder"
+        [values]="testValues"
+        [compact]="true"></app-multi-value-card>
     </div>
   </ng-template>
 </app-calculator>

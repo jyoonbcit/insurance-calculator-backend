@@ -11,8 +11,8 @@ import {
   TuiSelectModule,
   TuiTabsModule,
 } from '@taiga-ui/kit';
-import { ValueCardComponent } from 'app/core/components/value-card/value-card.component';
 import { CalculatorComponent } from '../calculator/calculator.component';
+import { MultiValueCardComponent } from 'app/core/components/multi-value-card/multi-value-card.component';
 
 @Component({
   selector: 'app-client',
@@ -29,7 +29,7 @@ import { CalculatorComponent } from '../calculator/calculator.component';
     TuiTabsModule,
     TuiNotificationModule,
     NgIf,
-    ValueCardComponent,
+    MultiValueCardComponent,
     CalculatorComponent,
   ],
   templateUrl: './total-needs.component.html',
@@ -38,4 +38,9 @@ import { CalculatorComponent } from '../calculator/calculator.component';
 })
 export class TotalNeedsComponent {
   activeItemIndex = 0;
+
+  testValues = [
+    { label: 'Need', value: '$5,000,000' },
+    { label: 'Want', value: '$2,000,000' },
+  ];
 }
