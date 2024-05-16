@@ -11,3 +11,29 @@
 .nav-tabs {
   margin-bottom: 1em;
 }
+
+.client-form {
+  height: auto;
+  width: 100%;
+
+  > * {
+    width: 90%;
+  }
+}
+
+.client-result-container {
+  height: auto;
+  width: 100%;
+
+  > * {
+    width: 90%;
+  }
+}
+
+.beneficiary-input {
+  margin-bottom: 1em;
+}
+
+.info-divider {
+  margin-top: 1em;
+}

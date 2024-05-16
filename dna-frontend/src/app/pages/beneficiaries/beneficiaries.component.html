@@ -5,4 +5,20 @@
     <button tuiTab>Input Data</button>
     <button tuiTab>Results</button>
   </tui-tabs>
+  <form
+    class="client-form flex column m-start c-center"
+    *ngIf="activeItemIndex === 0; else elseBlock">
+    <div class="beneficiary-info-dynamic-section">
+      <tui-input tuiTextfieldSize="s" class="beneficiary-input">
+        Name
+        <input tuiTextfield />
+      </tui-input>
+      <tui-input-number class="beneficiary-input">Allocation</tui-input-number>
+      <app-horizontal-divider class="info-divider"></app-horizontal-divider>
+    </div>
+    <button tuiButton type="button" class="add-new-button">Add New</button>
+  </form>
+  <ng-template #elseBlock>
+    <h1>Results Works!</h1>
+  </ng-template>
 </app-calculator>
