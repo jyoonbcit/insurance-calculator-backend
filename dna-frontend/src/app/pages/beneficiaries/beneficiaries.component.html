@@ -6,7 +6,7 @@
     <button tuiTab>Results</button>
   </tui-tabs>
   <form
-    class="client-form flex column m-start c-center"
+    class="beneficiary-form flex column m-start c-center"
     *ngIf="activeItemIndex === 0; else elseBlock">
     <div class="beneficiary-info-dynamic-section">
       <!-- This class needs to be dynamically created per beneficiary -->
@@ -21,7 +21,7 @@
     <!-- Pressing this button will add a new beneficiary info section which is by default empty. -->
   </form>
   <ng-template #elseBlock>
-    <div class="client-result-container flex column c-center gap-2">
+    <div class="beneficiary-result-container flex column c-center gap-2">
       <app-pie-chart header="Desired Beneficiary Allocation"></app-pie-chart>
       <app-pie-chart header="Real Beneficiary Distribution"></app-pie-chart>
       <app-bar-chart header="Asset Value Distribution"></app-bar-chart>
