@@ -30,6 +30,24 @@
   --tui-base-03: #{c.$tertiary-background};
   --tui-link: #{c.$primary-text};
   --tui-link-hover: #{c.$tertiary};
+
+  /* Size overrides */
+  --tui-height-xs: 2rem;
+  --tui-height-s: 2.75rem;
+  --tui-height-m: 3.5rem;
+  --tui-height-l: 5rem;
+  --tui-padding-xs: 0.5rem;
+  --tui-padding-s: 1rem;
+  --tui-padding-m: 2rem;
+  --tui-padding-l: 3rem;
+  --tui-radius-xs: 0.25rem;
+  --tui-radius-s: 0.5rem;
+  --tui-radius-m: 0.75rem;
+  --tui-radius-l: 1rem;
+  --margin-xs: 0.5rem;
+  --margin-s: 1rem;
+  --margin-m: 2rem;
+  --margin-l: 3rem;
 }
 
 /* Disable image dragging by default */
