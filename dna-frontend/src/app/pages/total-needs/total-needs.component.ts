@@ -15,7 +15,7 @@ import { CalculatorComponent } from '../calculator/calculator.component';
 import { MultiValueCardComponent } from 'app/core/components/multi-value-card/multi-value-card.component';
 
 @Component({
-  selector: 'app-client',
+  selector: 'app-total-needs',
   standalone: true,
   imports: [
     ReactiveFormsModule,
