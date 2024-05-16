@@ -1,12 +1,13 @@
 import { NgIf } from '@angular/common';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TuiDataListModule } from '@taiga-ui/core';
+import { TuiDataListModule, TuiNotificationModule } from '@taiga-ui/core';
 import {
   TuiDataListWrapperModule,
   TuiInputDateModule,
   TuiInputModule,
   TuiInputNumberModule,
+  TuiInputSliderModule,
   TuiSelectModule,
   TuiTabsModule,
 } from '@taiga-ui/kit';
@@ -21,10 +22,12 @@ import { CalculatorComponent } from '../calculator/calculator.component';
     TuiInputModule,
     TuiInputDateModule,
     TuiInputNumberModule,
+    TuiInputSliderModule,
     TuiSelectModule,
     TuiDataListModule,
     TuiDataListWrapperModule,
     TuiTabsModule,
+    TuiNotificationModule,
     NgIf,
     ValueCardComponent,
     CalculatorComponent,

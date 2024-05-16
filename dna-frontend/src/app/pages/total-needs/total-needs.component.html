@@ -6,32 +6,68 @@
     <button tuiTab>Results</button>
   </tui-tabs>
   <form
-    class="client-form flex column m-start c-center gap-2"
+    class="total-needs-form flex column m-start c-center gap-2"
     *ngIf="activeItemIndex === 0; else elseBlock">
+    <p>Income Replacement - Need $5,000,000</p>
+    <tui-input-slider formControlName="totalNeedsForm" [max]="100" [quantum]="1"
+      >Priority</tui-input-slider
+    >
     <tui-input tuiTextfieldSize="s">
-      Name
+      Want
       <input tuiTextfield />
     </tui-input>
-    <tui-input-date tuiUnfinishedValidator="Finish filling the field">
-      Birthdate
-    </tui-input-date>
-    <tui-input-number> Expected Retirement Age </tui-input-number>
 
-    <tui-select>
-      Provinces
-      <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
-    </tui-select>
+    <p>Estate Tax Liability - Need $5,000,000</p>
+    <tui-input-slider formControlName="totalNeedsForm" [max]="100" [quantum]="1"
+      >Priority</tui-input-slider
+    >
+    <tui-input tuiTextfieldSize="s">
+      Want
+      <input tuiTextfield />
+    </tui-input>
 
-    <tui-input-number> Annual Income ($CAD) </tui-input-number>
-    <tui-input-number> Income Replacement Multiplier </tui-input-number>
+    <p>Equalization - Need $5,000,000</p>
+    <tui-input-slider formControlName="totalNeedsForm" [max]="100" [quantum]="1"
+      >Priority</tui-input-slider
+    >
+    <tui-input tuiTextfieldSize="s">
+      Want
+      <input tuiTextfield />
+    </tui-input>
 
-    <tui-select>
-      Tax Bracket
-      <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
-    </tui-select>
+    <p>Goal Shortfall - Need $5,000,000</p>
+    <tui-input-slider formControlName="totalNeedsForm" [max]="100" [quantum]="1"
+      >Priority</tui-input-slider
+    >
+    <tui-input tuiTextfieldSize="s">
+      Want
+      <input tuiTextfield />
+    </tui-input>
+
+    <p>business 1 Key-Man: shareholder - Need $5,000,000</p>
+    <tui-input-slider formControlName="totalNeedsForm" [max]="100" [quantum]="1"
+      >Priority</tui-input-slider
+    >
+    <tui-input tuiTextfieldSize="s">
+      Want
+      <input tuiTextfield />
+    </tui-input>
+
+    <p>business 1 Shareholder Agreement: shareholder - Need $5,000,000</p>
+    <tui-input-slider formControlName="totalNeedsForm" [max]="100" [quantum]="1"
+      >Priority</tui-input-slider
+    >
+    <tui-input tuiTextfieldSize="s">
+      Want
+      <input tuiTextfield />
+    </tui-input>
+
+    <tui-notification status="warning" [hasIcon]="true">
+      Check to ensure all priorities are set
+    </tui-notification>
   </form>
   <ng-template #elseBlock>
-    <div class="client-result-container gap-2 flex column c-center">
+    <div class="total-needs-result-container gap-2 flex column c-center">
       <app-value-card
         [value]="{
           label: 'Age',

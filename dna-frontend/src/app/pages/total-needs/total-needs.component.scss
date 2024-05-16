@@ -4,12 +4,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  background-color: white;
+  background-color: black;
   height: 100%;
 }
 
-.client-form {
-  height: auto;
+.total-needs-form {
+  height: 100%;
   width: 100%;
 
   > * {
@@ -21,8 +21,8 @@
   margin-bottom: 1em;
 }
 
-.client-result-container {
-  height: auto;
+.total-needs-result-container {
+  height: 100%;
   width: 100%;
 
   > * {
