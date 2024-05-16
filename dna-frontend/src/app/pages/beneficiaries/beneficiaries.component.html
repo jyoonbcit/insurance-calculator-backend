@@ -9,6 +9,7 @@
     class="client-form flex column m-start c-center"
     *ngIf="activeItemIndex === 0; else elseBlock">
     <div class="beneficiary-info-dynamic-section">
+      <!-- This class needs to be dynamically created per beneficiary -->
       <tui-input tuiTextfieldSize="s" class="beneficiary-input">
         Name
         <input tuiTextfield />
@@ -17,6 +18,7 @@
       <app-horizontal-divider class="info-divider"></app-horizontal-divider>
     </div>
     <button tuiButton type="button" class="add-new-button">Add New</button>
+    <!-- Pressing this button will add a new beneficiary info section which is by default empty. -->
   </form>
   <ng-template #elseBlock>
     <h1>Results Works!</h1>
