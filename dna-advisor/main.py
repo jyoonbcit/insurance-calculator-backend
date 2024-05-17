@@ -9,6 +9,9 @@ from api import create_api
 # Load model directly
 from huggingface_hub import hf_hub_download
 
+#
+from supabase.client import create_client
+
 
 # def find_model_template(model) -> str:
 #     template_file = os.path.splitext(model)[0] + '.json'
@@ -58,7 +61,12 @@ if __name__ == "__main__":
 
     # Load the documents to be embedded and stored in a vector db
     documents = Rag.read_documents(args.documents)
-    rag = Rag(documents=documents, embedding=model.getEmbeddings())
+
+    rag = None
+
+    if args.supabase_url and args.supabase_key:
+        supabase_client = create_client(args.supabase_url, args.supabase_key)
+        rag = Rag(supabase_client=supabase_client, documents=documents, embedding=model.getEmbeddings())
 
     # If there are no errors, tell the model to use RAG
     if rag:
