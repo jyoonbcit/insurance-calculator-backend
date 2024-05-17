@@ -3,9 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { SupabaseService } from '../services/supabase.service';
 
 export const authGuard: CanActivateFn = () => {
-  const isLoggedIn = inject(SupabaseService).isLoggedIn;
-  console.log(isLoggedIn);
-  if (isLoggedIn) {
+  if (inject(SupabaseService).isLoggedIn) {
     return true;
   }
   inject(NgZone).run(() => {
