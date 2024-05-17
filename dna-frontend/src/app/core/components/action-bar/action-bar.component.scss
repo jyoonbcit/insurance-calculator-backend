@@ -1,13 +1,13 @@
 :host {
   position: fixed;
   bottom: 0;
-  background-color: var(--tui-base-03);
-  padding: var(--tui-padding-s);
   width: 500px;
   box-sizing: border-box;
 }
 
 .bottom-actions {
+  background-color: var(--tui-base-03);
+  padding: var(--tui-padding-s);
   display: flex;
   flex-direction: row;
   justify-content: space-between;

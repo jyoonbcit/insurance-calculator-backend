@@ -1,3 +1,10 @@
+<tui-notification
+  class="margin-vertical-s margin-horizontal-s"
+  status="warning"
+  [hasIcon]="true"
+  *ngIf="isNotificationShown">
+  {{ notificationLabel }}
+</tui-notification>
 <div class="bottom-actions">
   <button
     tuiButton
