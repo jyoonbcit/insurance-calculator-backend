@@ -20,16 +20,11 @@ export class CalculatorComponent {
   constructor(
     @Inject(TuiDialogService)
     private readonly dialog: TuiDialogService,
-    private readonly supabase: SupabaseService,
+    readonly supabase: SupabaseService,
     private readonly router: Router,
     private readonly zone: NgZone
   ) {
     this.pageName = this.getPageName();
-    this.supabase.currentUser.subscribe(user => {
-      console.log(user);
-      this.userData.set(user?.user_metadata?.['email']);
-      console.log(this.userData());
-    });
   }
 
   toTitleCase(str: string): string {

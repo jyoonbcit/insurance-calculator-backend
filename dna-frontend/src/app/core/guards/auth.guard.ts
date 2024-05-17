@@ -1,7 +1,13 @@
-import { CanActivateFn } from '@angular/router';
+import { NgZone, inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { SupabaseService } from '../services/supabase.service';
 
-// Temporarily disable eslint
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const authGuard: CanActivateFn = (route, state) => {
-  return true;
+export const authGuard: CanActivateFn = () => {
+  if (inject(SupabaseService).isLoggedIn) {
+    return true;
+  }
+  inject(NgZone).run(() => {
+    inject(Router).navigate(['/auth']);
+  });
+  return false;
 };
