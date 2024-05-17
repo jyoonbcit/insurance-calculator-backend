@@ -31,7 +31,11 @@ export class SupabaseService {
   }
 
   get isLoggedIn() {
-    return !!sessionStorage.getItem('session');
+    return (
+      sessionStorage.getItem('session') !== 'undefined' &&
+      sessionStorage.getItem('session') !== undefined &&
+      sessionStorage.getItem('session') !== null
+    );
   }
 
   async createClient() {
@@ -58,15 +62,21 @@ export class SupabaseService {
   }
 
   async signUp(email: string, password: string) {
+    this.clearSession();
     return await this.supabase.auth.signUp({ email, password });
   }
 
   async signIn(email: string, password: string) {
+    this.clearSession();
     return await this.supabase.auth.signInWithPassword({ email, password });
   }
 
   async signOut() {
-    sessionStorage.removeItem('session');
+    this.clearSession();
     await this.supabase.auth.signOut();
+  }
+
+  private clearSession() {
+    sessionStorage.removeItem('session');
   }
 }
