@@ -34,10 +34,14 @@ if __name__ == "__main__":
     DEFAULT_ADDRESS = "0.0.0.0"
     DEFAULT_PORT = 3001
     DOCUMENTS_DIR = os.getenv("DOCUMENTS", "./documents")
+    SUPABASE_URL = os.getenv("SUPABASE_URL")
+    SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", help="Address to bind the application to", default=DEFAULT_ADDRESS)
     parser.add_argument("--port", help="Port to bind the application to", default=DEFAULT_PORT)
+    parser.add_argument("--supabase-url", help="URL to your Supabase instance", default=SUPABASE_URL)
+    parser.add_argument("--supabase-key", help="Your Supabase access key", default=SUPABASE_KEY)
     parser.add_argument("-d", "--documents", help="Define the root documents directory", default=DOCUMENTS_DIR)
     args = parser.parse_args()
 
