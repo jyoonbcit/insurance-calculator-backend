@@ -1,10 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
+import { TuiDay } from '@taiga-ui/cdk';
 import { Client } from 'app/core/models/client.model';
 import { SupabaseService } from 'app/core/services/supabase.service';
 import { ClientState, initialClientState } from 'app/states/client.state';
-import { tap } from 'rxjs';
+import { take } from 'rxjs';
 
 @Injectable()
 export class ClientStore extends ComponentStore<ClientState> {
@@ -45,6 +46,9 @@ export class ClientStore extends ComponentStore<ClientState> {
         throw response.error;
       } else {
         if (response.data.client !== null) {
+          response.data.client.birthdate = TuiDay.fromUtcNativeDate(
+            new Date(response.data.client.birthdate)
+          );
           this.setClient(response.data.client);
         }
       }
@@ -52,12 +56,12 @@ export class ClientStore extends ComponentStore<ClientState> {
   }
 
   updateClient(clientId: number) {
-    console.log('Here');
-    this.client$.pipe(
-      tap(client => {
-        console.log(client);
-        this.supabaseService.updateClient(clientId, client);
-      })
-    );
+    this.client$.pipe(take(1)).subscribe(client => {
+      this.supabaseService.updateClient(clientId, client).then(response => {
+        if (response.error) {
+          throw response.error;
+        }
+      });
+    });
   }
 }

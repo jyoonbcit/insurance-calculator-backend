@@ -14,7 +14,6 @@
         Name
         <input tuiTextfield (blur)="onBlur()" />
       </tui-input>
-
       <tui-input-date
         toNativeDate
         [max]="maxDate"
@@ -23,12 +22,10 @@
         Birthdate
         <input tuiTextfield (blur)="onBlur()" />
       </tui-input-date>
-
       <tui-input-number formControlName="expectedRetirementAge">
         Expected Retirement Age
         <input tuiTextfield (blur)="onBlur()" />
       </tui-input-number>
-
       <tui-select formControlName="province">
         Province
         <tui-data-list-wrapper
@@ -36,22 +33,14 @@
           [items]="provinceOptions"></tui-data-list-wrapper>
         <input tuiTextfield (blur)="onBlur()" />
       </tui-select>
-
       <tui-input-number formControlName="annualIncome">
         Annual Income ($CAD)
         <input tuiTextfield (blur)="onBlur()" />
       </tui-input-number>
-
       <tui-input-number formControlName="incomeReplacementMultiplier">
         Income Replacement Multiplier
         <input tuiTextfield (blur)="onBlur()" />
       </tui-input-number>
-
-      <tui-select formControlName="selectedBracket">
-        Tax Bracket
-        <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
-        <input tuiTextfield (blur)="onBlur()" />
-      </tui-select>
     </form>
     <ng-template #elseBlock>
       <div class="gap-2 flex column">
@@ -75,6 +64,13 @@
               ((vm.client.annualIncome || 0) *
                 (vm.client.incomeReplacementMultiplier || 0) | currency) ||
               '$0.00'
+          }"></app-value-card>
+        <app-value-card
+          [value]="{
+            label: 'Tax Bracket',
+            value:
+              calculateTaxBracket(vm.client.province, vm.client.annualIncome) ||
+              'N/A'
           }"></app-value-card>
       </div>
     </ng-template>

@@ -99,4 +99,16 @@ export class ClientComponent implements OnInit, OnDestroy {
   onBlur() {
     this.clientStore.updateClient(this.clientId);
   }
+
+  calculateTaxBracket(
+    province: CA_PROVINCES | null,
+    annualIncome: number | null
+  ) {
+    if (!province || !annualIncome) {
+      return null;
+    }
+
+    // Calculate tax bracket based on province and annual income
+    return null;
+  }
 }

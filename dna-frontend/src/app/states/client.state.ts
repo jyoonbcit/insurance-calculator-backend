@@ -15,7 +15,6 @@ export const initialClientState: ClientState = {
     province: null,
     annualIncome: null,
     incomeReplacementMultiplier: null,
-    selectedBracket: null,
     expectedRetirementAge: null,
   },
 };

@@ -20,7 +20,7 @@ export class SupabaseService {
     );
 
     this.supabase.auth.onAuthStateChange((_, session) => {
-      sessionStorage.setItem('user', JSON.stringify(session?.user));
+      sessionStorage.setItem('session', JSON.stringify(session?.user.id));
 
       if (session?.user && this.router.url === '/auth') {
         this.zone.run(() => {
@@ -31,7 +31,7 @@ export class SupabaseService {
   }
 
   get isLoggedIn() {
-    return !!sessionStorage.getItem('user');
+    return !!sessionStorage.getItem('session');
   }
 
   async createClient() {
@@ -50,10 +50,9 @@ export class SupabaseService {
   }
 
   async updateClient(client_id: number, client: Client) {
-    const clientJson = JSON.stringify(client);
     return await this.supabase
       .from('client_profiles')
-      .update({ client: clientJson })
+      .update({ client: client })
       .eq('id', client_id)
       .select();
   }
@@ -67,6 +66,7 @@ export class SupabaseService {
   }
 
   async signOut() {
+    sessionStorage.removeItem('session');
     await this.supabase.auth.signOut();
   }
 }
