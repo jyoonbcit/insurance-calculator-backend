@@ -45,11 +45,13 @@
     <ng-template #elseBlock>
       <div class="client-result-container flex column c-center gap-2">
         <app-value-card
+          [compact]="true"
           [value]="{
             label: 'Age',
             value: (vm.client.birthdate | bdAge).toString()
           }"></app-value-card>
         <app-value-card
+          [compact]="true"
           [value]="{
             label: 'Years of Active Income',
             value: (
@@ -58,6 +60,7 @@
             ).toString()
           }"></app-value-card>
         <app-value-card
+          [compact]="true"
           [value]="{
             label: 'Amount Insured for Income ($CAD)',
             value:
@@ -66,6 +69,7 @@
               '$0.00'
           }"></app-value-card>
         <app-value-card
+          [compact]="true"
           [value]="{
             label: 'Tax Bracket',
             value:

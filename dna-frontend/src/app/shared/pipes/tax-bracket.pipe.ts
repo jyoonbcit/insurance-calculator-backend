@@ -10,6 +10,6 @@ export class TaxBracketPipe implements PipeTransform {
     if (!bracket) {
       return 'N/A';
     }
-    return `$${bracket.minIncome}.00 and up - ${bracket.taxRate}%`;
+    return `$${bracket.minIncome}.00+`;
   }
 }
