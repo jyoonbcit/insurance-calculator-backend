@@ -1,5 +1,5 @@
 import { AsyncPipe, CurrencyPipe, NgIf } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TuiDataListModule, tuiNumberFormatProvider } from '@taiga-ui/core';
 import {
@@ -10,7 +10,6 @@ import {
   TuiSelectModule,
   TuiTabsModule,
 } from '@taiga-ui/kit';
-import { AppbarComponent } from 'app/core/components/appbar/appbar.component';
 import { ValueCardComponent } from 'app/core/components/value-card/value-card.component';
 import { ClientStore } from './client.store';
 import { Client } from 'app/core/models/client.model';
@@ -18,6 +17,9 @@ import { CA_PROVINCES } from 'app/core/enums/ca-provinces.enum';
 import { TUI_DATE_FORMAT, TUI_DATE_SEPARATOR, TuiDay } from '@taiga-ui/cdk';
 import { BirthDateAgePipe } from 'app/shared/pipes/age.pipe';
 import { NonNegativePipe } from 'app/shared/pipes/non-negative.pipe';
+import { CalculatorComponent } from '../calculator/calculator.component';
+import { take } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-client',
@@ -30,7 +32,6 @@ import { NonNegativePipe } from 'app/shared/pipes/non-negative.pipe';
     TuiSelectModule,
     TuiDataListModule,
     TuiDataListWrapperModule,
-    AppbarComponent,
     ValueCardComponent,
     TuiTabsModule,
     NgIf,
@@ -38,6 +39,10 @@ import { NonNegativePipe } from 'app/shared/pipes/non-negative.pipe';
     CurrencyPipe,
     BirthDateAgePipe,
     NonNegativePipe,
+    TuiTabsModule,
+    NgIf,
+    ValueCardComponent,
+    CalculatorComponent,
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
@@ -52,6 +57,7 @@ import { NonNegativePipe } from 'app/shared/pipes/non-negative.pipe';
   ],
 })
 export class ClientComponent implements OnInit, OnDestroy {
+  @Input() clientId: number = 0;
   activeItemIndex = 0;
   vm$ = this.clientStore.vm$;
   readonly provinceOptions = Object.values(CA_PROVINCES);
@@ -66,20 +72,31 @@ export class ClientComponent implements OnInit, OnDestroy {
     expectedRetirementAge: new FormControl(),
   });
 
-  constructor(private readonly clientStore: ClientStore) {}
+  constructor(
+    private readonly clientStore: ClientStore,
+    private route: ActivatedRoute
+  ) {
+    this.route.params.subscribe(params => {
+      this.clientId = +params['id'];
+      this.clientStore.getClient(this.clientId);
+      // This is necessary to first populate the form with the initial state and then the data from the db
+      this.vm$.pipe(take(2)).subscribe(state => {
+        this.clientForm.patchValue(state.client);
+      });
+    });
+  }
 
-  ngOnInit(): void {
-    this.clientStore.getClient();
+  ngOnInit() {
     this.clientForm.valueChanges.subscribe(formData => {
       this.clientStore.setClient(formData as Client);
     });
   }
 
-  ngOnDestroy(): void {
-    this.clientStore.putClient();
+  ngOnDestroy() {
+    this.clientStore.updateClient(this.clientId);
   }
 
-  onBlur(): void {
-    this.clientStore.putClient();
+  onBlur() {
+    this.clientStore.updateClient(this.clientId);
   }
 }

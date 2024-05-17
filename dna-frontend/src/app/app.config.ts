@@ -6,6 +6,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideHttpClient } from '@angular/common/http';
+import { SupabaseService } from './core/services/supabase.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,5 +15,6 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(TuiRootModule),
     provideStore(),
     provideHttpClient(),
+    SupabaseService,
   ],
 };

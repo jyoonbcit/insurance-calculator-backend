@@ -1,15 +1,14 @@
 import { Injectable, NgZone } from '@angular/core';
-import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { ENVIRONMENT } from 'environments/environment';
-import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { Client } from '../models/client.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SupabaseService {
   private supabase!: SupabaseClient;
-  user = new BehaviorSubject<User | null>(null);
 
   constructor(
     private router: Router,
@@ -21,13 +20,42 @@ export class SupabaseService {
     );
 
     this.supabase.auth.onAuthStateChange((_, session) => {
-      this.user.next(session?.user ?? null);
-      if (session?.user) {
+      sessionStorage.setItem('user', JSON.stringify(session?.user));
+
+      if (session?.user && this.router.url === '/auth') {
         this.zone.run(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/landing']);
         });
       }
     });
+  }
+
+  get isLoggedIn() {
+    return !!sessionStorage.getItem('user');
+  }
+
+  async createClient() {
+    return await this.supabase
+      .from('client_profiles')
+      .insert([{ client: '{}' }])
+      .select();
+  }
+
+  async getClient(client_id: number) {
+    return await this.supabase
+      .from('client_profiles')
+      .select('*')
+      .eq('id', client_id)
+      .single();
+  }
+
+  async updateClient(client_id: number, client: Client) {
+    const clientJson = JSON.stringify(client);
+    return await this.supabase
+      .from('client_profiles')
+      .update({ client: clientJson })
+      .eq('id', client_id)
+      .select();
   }
 
   async signUp(email: string, password: string) {
@@ -40,9 +68,5 @@ export class SupabaseService {
 
   async signOut() {
     await this.supabase.auth.signOut();
-  }
-
-  get currentUser() {
-    return this.user.asObservable();
   }
 }

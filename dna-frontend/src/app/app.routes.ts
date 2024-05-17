@@ -48,7 +48,7 @@ export const routes: Routes = [
     title: 'DNA | Test Page',
   },
   {
-    path: 'client',
+    path: 'client/:id',
     loadComponent: () =>
       import('./pages/client/client.component').then(
         com => com.ClientComponent

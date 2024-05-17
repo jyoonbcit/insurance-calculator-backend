@@ -1,11 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import { tapResponse } from '@ngrx/operators';
 import { Client } from 'app/core/models/client.model';
-import { ProfilesService } from 'app/core/services/profiles.service';
+import { SupabaseService } from 'app/core/services/supabase.service';
 import { ClientState, initialClientState } from 'app/states/client.state';
-import { exhaustMap, tap } from 'rxjs';
+import { tap } from 'rxjs';
 
 @Injectable()
 export class ClientStore extends ComponentStore<ClientState> {
@@ -36,34 +35,29 @@ export class ClientStore extends ComponentStore<ClientState> {
     client,
   }));
 
-  readonly getClient = this.effect(trigger$ => {
-    return trigger$.pipe(
-      tap(() => {
-        this.setIsLoading();
-      }),
-      exhaustMap(() =>
-        this.profilesService.getClient().pipe(
-          tapResponse(
-            client => this.setClient(client),
-            (err: HttpErrorResponse) => this.setError(err)
-          )
-        )
-      )
-    );
-  });
-
-  readonly putClient = this.effect(trigger$ => {
-    return trigger$.pipe(
-      tapResponse(
-        () => {
-          this.profilesService.putClient();
-        },
-        (err: HttpErrorResponse) => this.setError(err)
-      )
-    );
-  });
-
-  constructor(private profilesService: ProfilesService) {
+  constructor(private supabaseService: SupabaseService) {
     super(initialClientState);
+  }
+
+  getClient(clientId: number) {
+    this.supabaseService.getClient(clientId).then(response => {
+      if (response.error) {
+        throw response.error;
+      } else {
+        if (response.data.client !== null) {
+          this.setClient(response.data.client);
+        }
+      }
+    });
+  }
+
+  updateClient(clientId: number) {
+    console.log('Here');
+    this.client$.pipe(
+      tap(client => {
+        console.log(client);
+        this.supabaseService.updateClient(clientId, client);
+      })
+    );
   }
 }

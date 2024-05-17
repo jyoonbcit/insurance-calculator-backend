@@ -1,4 +1,3 @@
-import { CA_PROVINCES } from 'app/core/enums/ca-provinces.enum';
 import { Client } from 'app/core/models/client.model';
 
 export interface ClientState {
@@ -12,16 +11,11 @@ export const initialClientState: ClientState = {
   error: null,
   client: {
     name: '',
-    birthdate: new Date(),
-    province: CA_PROVINCES.OTHER,
-    annualIncome: 0,
-    incomeReplacementMultiplier: 0,
-    selectedBracket: {
-      minIncome: 0,
-      taxRate: 0,
-      dividendEligible: 0,
-      dividendNonEligible: 0,
-    },
-    expectedRetirementAge: 0,
+    birthdate: null,
+    province: null,
+    annualIncome: null,
+    incomeReplacementMultiplier: null,
+    selectedBracket: null,
+    expectedRetirementAge: null,
   },
 };
