@@ -1,33 +1,28 @@
 <app-header-bar pageName="Edit Debt"></app-header-bar>
-<form class="debts-form flex column m-start c-center gap-2">
-  <!-- Populate dynamically -->
-  <div class="debt-section flex column m-start c-center gap-2">
-    <tui-input tuiTextfieldSize="s">
-      Name
-      <input tuiTextfield />
-    </tui-input>
-    <tui-input tuiTextfieldSize="s">
-      Amount ($)
-      <input tuiTextfield />
-    </tui-input>
-    <tui-input tuiTextfieldSize="s">
-      Insurable Future Value ($)
-      <input tuiTextfield />
-    </tui-input>
-    <button tuiButton type="button" appearance="secondary" class="edit-button">
-      Edit
-    </button>
-    <button
-      tuiButton
-      type="button"
-      appearance="secondary"
-      class="delete-button">
-      Delete
-    </button>
-    <app-horizontal-divider></app-horizontal-divider>
-  </div>
-  <button tuiButton type="button" appearance="primary" class="new-button">
-    Add New
-  </button>
+<form class="debt-edit-form flex column m-start c-center gap-2">
+  <tui-input tuiTextfieldSize="s">
+    Debt Name
+    <input tuiTextfield />
+  </tui-input>
+  <tui-input tuiTextfieldSize="s">
+    Initial Value ($)
+    <input tuiTextfield />
+  </tui-input>
+  <tui-input tuiTextfieldSize="s">
+    Year Acquired
+    <input tuiTextfield />
+  </tui-input>
+  <tui-input tuiTextfieldSize="s">
+    Interest Rate (%)
+    <input tuiTextfield />
+  </tui-input>
+  <tui-input tuiTextfieldSize="s">
+    Term (Years)
+    <input tuiTextfield />
+  </tui-input>
+  <tui-input tuiTextfieldSize="s">
+    Annual Payment ($)
+    <input tuiTextfield />
+  </tui-input>
 </form>
 <app-action-bar></app-action-bar>
