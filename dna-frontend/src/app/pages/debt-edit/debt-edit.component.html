@@ -1,0 +1,16 @@
+<app-header-bar pageName="Edit Debt"></app-header-bar>
+<form
+  class="debt-edit-form flex column m-start c-center gap-2 margin-vertical-s">
+  <tui-input tuiTextfieldSize="s">
+    Debt Name
+    <input tuiTextfield />
+  </tui-input>
+  <tui-input-number tuiTextfieldSize="s"> Initial Value ($) </tui-input-number>
+  <tui-input-number tuiTextfieldSize="s"> Year Acquired </tui-input-number>
+  <tui-input-number tuiTextfieldSize="s"> Interest Rate (%) </tui-input-number>
+  <tui-input-number tuiTextfieldSize="s"> Term (Years) </tui-input-number>
+  <tui-input-number tuiTextfieldSize="s"> Annual Payment ($) </tui-input-number>
+</form>
+<app-action-bar
+  (leftButtonClick)="cancel()"
+  (rightButtonClick)="save()"></app-action-bar>

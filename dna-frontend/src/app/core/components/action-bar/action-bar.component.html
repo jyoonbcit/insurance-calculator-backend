@@ -1,0 +1,27 @@
+<tui-notification
+  class="margin-vertical-s margin-horizontal-s"
+  status="warning"
+  [hasIcon]="true"
+  *ngIf="isNotificationShown">
+  {{ notificationLabel }}
+</tui-notification>
+<div class="bottom-actions">
+  <button
+    tuiButton
+    type="button"
+    size="s"
+    appearance="secondary"
+    class="cancel-button"
+    (click)="leftButtonClick.emit()">
+    {{ leftButtonLabel }}
+  </button>
+  <button
+    tuiButton
+    type="button"
+    size="s"
+    appearance="primary"
+    class="save-button"
+    (click)="rightButtonClick.emit()">
+    {{ rightButtonLabel }}
+  </button>
+</div>
