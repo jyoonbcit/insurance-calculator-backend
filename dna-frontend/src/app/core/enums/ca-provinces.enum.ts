@@ -12,5 +12,4 @@ export enum CA_PROVINCES {
   QC = 'QC',
   SK = 'SK',
   YT = 'YT',
-  OTHER = 'Other',
 }

@@ -20,6 +20,8 @@ import { NonNegativePipe } from 'app/shared/pipes/non-negative.pipe';
 import { CalculatorComponent } from '../calculator/calculator.component';
 import { take } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { PROVINCE_TAX_BRACKETS } from 'app/core/constants/tax.constant';
+import { TaxBracketPipe } from 'app/shared/pipes/tax-bracket.pipe';
 
 @Component({
   selector: 'app-client',
@@ -32,17 +34,15 @@ import { ActivatedRoute } from '@angular/router';
     TuiSelectModule,
     TuiDataListModule,
     TuiDataListWrapperModule,
-    ValueCardComponent,
     TuiTabsModule,
+    ValueCardComponent,
+    CalculatorComponent,
     NgIf,
     AsyncPipe,
     CurrencyPipe,
     BirthDateAgePipe,
     NonNegativePipe,
-    TuiTabsModule,
-    NgIf,
-    ValueCardComponent,
-    CalculatorComponent,
+    TaxBracketPipe,
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
@@ -108,7 +108,13 @@ export class ClientComponent implements OnInit, OnDestroy {
       return null;
     }
 
-    // Calculate tax bracket based on province and annual income
-    return null;
+    const brackets = PROVINCE_TAX_BRACKETS[province];
+    let selectedBracket = brackets[0];
+    for (const bracket of brackets) {
+      if (annualIncome >= bracket.minIncome) {
+        selectedBracket = bracket;
+      }
+    }
+    return selectedBracket;
   }
 }

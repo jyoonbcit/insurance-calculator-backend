@@ -69,8 +69,8 @@
           [value]="{
             label: 'Tax Bracket',
             value:
-              calculateTaxBracket(vm.client.province, vm.client.annualIncome) ||
-              'N/A'
+              calculateTaxBracket(vm.client.province, vm.client.annualIncome)
+              | taxBracket
           }"></app-value-card>
       </div>
     </ng-template>
