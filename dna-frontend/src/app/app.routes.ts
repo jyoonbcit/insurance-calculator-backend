@@ -72,7 +72,7 @@ export const routes: Routes = [
     title: 'DNA | Businesses',
   },
   {
-    path: 'debt/:id',
+    path: 'business/:id',
     loadComponent: () =>
       import('./pages/business-edit/business-edit.component').then(
         com => com.BusinessEditComponent
