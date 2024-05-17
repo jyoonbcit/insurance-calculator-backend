@@ -10,4 +10,6 @@
   <tui-input-number tuiTextfieldSize="s"> Term (Years) </tui-input-number>
   <tui-input-number tuiTextfieldSize="s"> Annual Payment ($) </tui-input-number>
 </form>
-<app-action-bar></app-action-bar>
+<app-action-bar
+  (leftButtonClick)="cancel()"
+  (rightButtonClick)="save()"></app-action-bar>

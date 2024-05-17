@@ -1,19 +1,10 @@
 import { NgIf } from '@angular/common';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TuiButtonModule, TuiNotificationModule } from '@taiga-ui/core';
 import {
-  TuiButtonModule,
-  TuiDataListModule,
-  TuiNotificationModule,
-} from '@taiga-ui/core';
-import {
-  TuiCheckboxBlockModule,
-  TuiDataListWrapperModule,
-  TuiInputDateModule,
   TuiInputModule,
   TuiInputNumberModule,
-  TuiInputSliderModule,
-  TuiSelectModule,
   TuiTabsModule,
 } from '@taiga-ui/kit';
 import { CalculatorComponent } from '../calculator/calculator.component';
@@ -27,15 +18,9 @@ import { LineChartComponent } from 'app/core/components/line-chart/line-chart.co
   imports: [
     ReactiveFormsModule,
     TuiInputModule,
-    TuiInputDateModule,
     TuiInputNumberModule,
-    TuiInputSliderModule,
-    TuiSelectModule,
-    TuiDataListModule,
-    TuiDataListWrapperModule,
     TuiTabsModule,
     TuiNotificationModule,
-    TuiCheckboxBlockModule,
     TuiButtonModule,
     HorizontalDividerComponent,
     NgIf,
