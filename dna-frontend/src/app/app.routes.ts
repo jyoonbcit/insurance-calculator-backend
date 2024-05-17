@@ -86,6 +86,14 @@ export const routes: Routes = [
     title: 'DNA | Debts',
   },
   {
+    path: 'debt/:id',
+    loadComponent: () =>
+      import('./pages/debt-edit/debt-edit.component').then(
+        com => com.DebtEditComponent
+      ),
+    title: 'DNA | Debts',
+  },
+  {
     path: 'goals',
     loadComponent: () =>
       import('./pages/goals/goals.component').then(com => com.GoalsComponent),
