@@ -35,16 +35,3 @@
     width: 100%;
   }
 }
-
-.bottom-actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  position: fixed;
-  bottom: 0;
-  background-color: var(--tui-base-03);
-  padding: var(--tui-padding-s);
-  width: 500px;
-  height: 75px;
-  box-sizing: border-box;
-}

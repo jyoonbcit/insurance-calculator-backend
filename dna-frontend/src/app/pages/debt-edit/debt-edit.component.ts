@@ -21,6 +21,8 @@ import { LineChartComponent } from 'app/core/components/line-chart/line-chart.co
 import { ValueCardComponent } from 'app/core/components/value-card/value-card.component';
 import { CalculatorComponent } from '../calculator/calculator.component';
 import { HeaderBarComponent } from 'app/core/components/header-bar/header-bar.component';
+import { ActionBarComponent } from 'app/core/components/action-bar/action-bar.component';
+import { BottomBarComponent } from 'app/core/components/bottom-bar/bottom-bar.component';
 
 @Component({
   selector: 'app-debt-edit',
@@ -44,6 +46,8 @@ import { HeaderBarComponent } from 'app/core/components/header-bar/header-bar.co
     CalculatorComponent,
     LineChartComponent,
     HeaderBarComponent,
+    ActionBarComponent,
+    BottomBarComponent,
   ],
   templateUrl: './debt-edit.component.html',
   styleUrl: './debt-edit.component.scss',
