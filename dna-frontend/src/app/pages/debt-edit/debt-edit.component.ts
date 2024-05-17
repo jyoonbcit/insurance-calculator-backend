@@ -20,6 +20,7 @@ import { HorizontalDividerComponent } from 'app/core/components/horizontal-divid
 import { LineChartComponent } from 'app/core/components/line-chart/line-chart.component';
 import { ValueCardComponent } from 'app/core/components/value-card/value-card.component';
 import { CalculatorComponent } from '../calculator/calculator.component';
+import { HeaderBarComponent } from 'app/core/components/header-bar/header-bar.component';
 
 @Component({
   selector: 'app-debt-edit',
@@ -42,6 +43,7 @@ import { CalculatorComponent } from '../calculator/calculator.component';
     ValueCardComponent,
     CalculatorComponent,
     LineChartComponent,
+    HeaderBarComponent,
   ],
   templateUrl: './debt-edit.component.html',
   styleUrl: './debt-edit.component.scss',
