@@ -1,5 +1,4 @@
 import os
-import json
 import argparse
 
 from lib.model import GPT4AllModel
@@ -41,11 +40,24 @@ if __name__ == "__main__":
     SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--host", help="Address to bind the application to", default=DEFAULT_ADDRESS)
-    parser.add_argument("--port", help="Port to bind the application to", default=DEFAULT_PORT)
-    parser.add_argument("--supabase-url", help="URL to your Supabase instance", default=SUPABASE_URL)
-    parser.add_argument("--supabase-key", help="Your Supabase access key", default=SUPABASE_KEY)
-    parser.add_argument("-d", "--documents", help="Define the root documents directory", default=DOCUMENTS_DIR)
+    parser.add_argument(
+        "--host", help="Address to bind the application to", default=DEFAULT_ADDRESS
+    )
+    parser.add_argument(
+        "--port", help="Port to bind the application to", default=DEFAULT_PORT
+    )
+    parser.add_argument(
+        "--supabase-url", help="URL to your Supabase instance", default=SUPABASE_URL
+    )
+    parser.add_argument(
+        "--supabase-key", help="Your Supabase access key", default=SUPABASE_KEY
+    )
+    parser.add_argument(
+        "-d",
+        "--documents",
+        help="Define the root documents directory",
+        default=DOCUMENTS_DIR,
+    )
     args = parser.parse_args()
 
     # Define the model to download
@@ -66,7 +78,11 @@ if __name__ == "__main__":
 
     if args.supabase_url and args.supabase_key:
         supabase_client = create_client(args.supabase_url, args.supabase_key)
-        rag = Rag(supabase_client=supabase_client, documents=documents, embedding=model.getEmbeddings())
+        rag = Rag(
+            supabase_client=supabase_client,
+            documents=documents,
+            embedding=model.getEmbeddings(),
+        )
 
     # If there are no errors, tell the model to use RAG
     if rag:

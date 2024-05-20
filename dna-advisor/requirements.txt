@@ -136,6 +136,7 @@ ply==3.11
 portalocker==2.8.2
 postgrest==0.16.4
 posthog==3.5.0
+pre-commit==3.7.1
 proto-plus==1.23.0
 protobuf==4.25.3
 pyasn1==0.6.0

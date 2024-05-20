@@ -49,14 +49,18 @@ def chunk(documents: List[Document]):
 
 
 class Rag:
-    def __init__(self, supabase_client: SyncClient, documents: Optional[List[Document]], embedding: Embeddings):
+    def __init__(
+        self,
+        supabase_client: SyncClient,
+        documents: Optional[List[Document]],
+        embedding: Embeddings,
+    ):
         self._db = SupabaseVectorStore(
             client=supabase_client,
             embedding=embedding,
             table_name="documents",
             query_name="match_documents",
         )
-
         if documents:
             self.add_documents(documents)
         else:
@@ -66,11 +70,13 @@ class Rag:
     def read_documents(dir: str):
         print("Loading documents...")
         try:
-            loader = DirectoryLoader(dir, glob="**/*", use_multithreading=True, show_progress=True)
+            loader = DirectoryLoader(
+                dir, glob="**/*", use_multithreading=True, show_progress=True
+            )
             return loader.load()
             # return None  # Disable document loading
         except FileNotFoundError:
-            print(f"Documents folder \"{dir}\" not found, skipping document processing.")
+            print(f'Documents folder "{dir}" not found, skipping document processing.')
             return None
 
         # TODO: Figure out a way to only process new documents.
@@ -82,7 +88,9 @@ class Rag:
 
     def add_documents(self, documents: List[Document]):
         chunks = embed_chunk_ids(chunk(documents))
-        print(f"[RAD] Adding {len(documents)} ({len(chunks)} chunks) documents to Supabase...")
+        print(
+            f"[RAD] Adding {len(documents)} ({len(chunks)} chunks) documents to Supabase..."
+        )
         self._db.add_documents(chunks)
 
         # TODO: Add checks to filter out existing data and add only new chunks
