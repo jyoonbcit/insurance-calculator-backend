@@ -49,7 +49,12 @@ def chunk(documents: List[Document]):
 
 
 class Rag:
-    def __init__(self, supabase_client: SyncClient, documents: Optional[List[Document]], embedding: Embeddings):
+    def __init__(
+        self,
+        supabase_client: SyncClient,
+        documents: Optional[List[Document]],
+        embedding: Embeddings,
+    ):
         self._db = SupabaseVectorStore(
             client=supabase_client,
             embedding=embedding,
@@ -83,7 +88,9 @@ class Rag:
 
     def add_documents(self, documents: List[Document]):
         chunks = embed_chunk_ids(chunk(documents))
-        print(f"[RAD] Adding {len(documents)} ({len(chunks)} chunks) documents to Supabase...")
+        print(
+            f"[RAD] Adding {len(documents)} ({len(chunks)} chunks) documents to Supabase..."
+        )
         self._db.add_documents(chunks)
 
         # TODO: Add checks to filter out existing data and add only new chunks
