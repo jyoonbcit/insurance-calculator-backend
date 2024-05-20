@@ -1,27 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
-import { TuiLinkModule } from '@taiga-ui/core';
+import { TuiLinkModule, TuiSvgModule } from '@taiga-ui/core';
+import { TuiAppBarModule } from '@taiga-ui/experimental';
 import { HorizontalDividerComponent } from '../horizontal-divider/horizontal-divider.component';
 
 @Component({
-  selector: 'app-sidebar',
+  selector: 'app-header-bar',
   standalone: true,
   imports: [
+    TuiAppBarModule,
     TuiSidebarModule,
     TuiActiveZoneModule,
     TuiLinkModule,
     RouterModule,
     HorizontalDividerComponent,
+    TuiSvgModule,
   ],
-  templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
+  templateUrl: './header-bar.component.html',
+  styleUrl: './header-bar.component.scss',
 })
-export class SidebarComponent {
-  open = false;
-
-  toggle(open: boolean) {
-    this.open = open;
-  }
+export class HeaderBarComponent {
+  @Input() pageName = '';
 }

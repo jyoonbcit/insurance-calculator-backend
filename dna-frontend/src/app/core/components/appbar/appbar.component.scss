@@ -8,4 +8,21 @@
 
 .sidebar-icon-toggle {
   margin-left: 1em;
+  cursor: pointer;
+}
+
+.nav-link,
+.nav-action {
+  font-size: 1.5em;
+  height: 3em;
+  margin-left: 0.5em;
+}
+
+.nav-label {
+  height: 2em;
+  margin-left: 0.9em;
+}
+
+.page-title {
+  font-size: 1.5em;
 }

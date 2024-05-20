@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -17,6 +18,7 @@ export const routes: Routes = [
   },
   {
     path: 'landing',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/landing/landing.component').then(
         com => com.LandingComponent
@@ -33,6 +35,7 @@ export const routes: Routes = [
   },
   {
     path: 'client-list',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/client-list/client-list.component').then(
         com => com.ClientListComponent
@@ -48,7 +51,8 @@ export const routes: Routes = [
     title: 'DNA | Test Page',
   },
   {
-    path: 'client',
+    path: 'client/:id',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/client/client.component').then(
         com => com.ClientComponent
@@ -57,6 +61,7 @@ export const routes: Routes = [
   },
   {
     path: 'beneficiaries',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/beneficiaries/beneficiaries.component').then(
         com => com.BeneficiariesComponent
@@ -65,6 +70,7 @@ export const routes: Routes = [
   },
   {
     path: 'businesses',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/businesses/businesses.component').then(
         com => com.BusinessesComponent
@@ -73,6 +79,7 @@ export const routes: Routes = [
   },
   {
     path: 'assets',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/assets/assets.component').then(
         com => com.AssetsComponent
@@ -81,18 +88,29 @@ export const routes: Routes = [
   },
   {
     path: 'debts',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/debts/debts.component').then(com => com.DebtsComponent),
     title: 'DNA | Debts',
   },
   {
+    path: 'debt/:id',
+    loadComponent: () =>
+      import('./pages/debt-edit/debt-edit.component').then(
+        com => com.DebtEditComponent
+      ),
+    title: 'DNA | Debts',
+  },
+  {
     path: 'goals',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/goals/goals.component').then(com => com.GoalsComponent),
     title: 'DNA | Goals',
   },
   {
     path: 'total-needs',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/total-needs/total-needs.component').then(
         com => com.TotalNeedsComponent

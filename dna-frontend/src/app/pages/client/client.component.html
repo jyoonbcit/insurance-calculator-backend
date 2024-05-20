@@ -1,49 +1,82 @@
-<app-appbar pageName="Client"></app-appbar>
-<tui-tabs class="nav-tabs" [(activeItemIndex)]="activeItemIndex">
-  <button tuiTab>Input Data</button>
-  <button tuiTab>Results</button>
-</tui-tabs>
-<form
-  class="client-form flex column m-start c-center gap-2"
-  *ngIf="activeItemIndex === 0; else elseBlock">
-  <tui-input tuiTextfieldSize="s">
-    Name
-    <input tuiTextfield />
-  </tui-input>
-  <tui-input-date tuiUnfinishedValidator="Finish filling the field">
-    Birthdate
-  </tui-input-date>
-  <tui-input-number> Expected Retirement Age </tui-input-number>
-
-  <tui-select>
-    Provinces
-    <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
-  </tui-select>
-
-  <tui-input-number> Annual Income ($CAD) </tui-input-number>
-  <tui-input-number> Income Replacement Multiplier </tui-input-number>
-
-  <tui-select>
-    Tax Bracket
-    <tui-data-list-wrapper *tuiDataList></tui-data-list-wrapper>
-  </tui-select>
-</form>
-<ng-template #elseBlock>
-  <div class="gap-2 flex column">
-    <app-value-card
-      [value]="{
-        label: 'Age',
-        value: '25'
-      }"></app-value-card>
-    <app-value-card
-      [value]="{
-        label: 'Years of Active Income',
-        value: '35'
-      }"></app-value-card>
-    <app-value-card
-      [value]="{
-        label: 'Amount Insured for Income ($CAD)',
-        value: '$1,000,000'
-      }"></app-value-card>
-  </div>
-</ng-template>
+<app-calculator>
+  <tui-tabs
+    class="nav-tabs flex row m-center"
+    [(activeItemIndex)]="activeItemIndex">
+    <button tuiTab>Input Data</button>
+    <button tuiTab>Results</button>
+  </tui-tabs>
+  <ng-container *ngIf="vm$ | async as vm">
+    <form
+      class="client-form flex column m-start c-center gap-2"
+      [formGroup]="clientForm"
+      *ngIf="activeItemIndex === 0; else elseBlock">
+      <tui-input tuiTextfieldSize="s" formControlName="name">
+        Name
+        <input tuiTextfield (blur)="onBlur()" />
+      </tui-input>
+      <tui-input-date
+        toNativeDate
+        [max]="maxDate"
+        tuiUnfinishedValidator="Finish filling the field"
+        formControlName="birthdate">
+        Birthdate
+        <input tuiTextfield (blur)="onBlur()" />
+      </tui-input-date>
+      <tui-input-number formControlName="expectedRetirementAge">
+        Expected Retirement Age
+        <input tuiTextfield (blur)="onBlur()" />
+      </tui-input-number>
+      <tui-select formControlName="province">
+        Province
+        <tui-data-list-wrapper
+          *tuiDataList
+          [items]="provinceOptions"></tui-data-list-wrapper>
+        <input tuiTextfield (blur)="onBlur()" />
+      </tui-select>
+      <tui-input-number formControlName="annualIncome">
+        Annual Income ($CAD)
+        <input tuiTextfield (blur)="onBlur()" />
+      </tui-input-number>
+      <tui-input-number formControlName="incomeReplacementMultiplier">
+        Income Replacement Multiplier
+        <input tuiTextfield (blur)="onBlur()" />
+      </tui-input-number>
+    </form>
+    <ng-template #elseBlock>
+      <div class="client-result-container flex column c-center gap-2">
+        <app-value-card
+          [compact]="true"
+          [value]="{
+            label: 'Age',
+            value: (vm.client.birthdate | bdAge).toString()
+          }"></app-value-card>
+        <app-value-card
+          [compact]="true"
+          [value]="{
+            label: 'Years of Active Income',
+            value: (
+              (vm.client.expectedRetirementAge || 0) -
+                (vm.client.birthdate | bdAge) | nonNegative
+            ).toString()
+          }"></app-value-card>
+        <app-value-card
+          [compact]="true"
+          [value]="{
+            label: 'Amount Insured for Income ($CAD)',
+            value:
+              ((vm.client.annualIncome || 0) *
+                (vm.client.incomeReplacementMultiplier || 0) | currency) ||
+              '$0.00'
+          }"></app-value-card>
+        <app-value-card
+          [compact]="true"
+          [value]="{
+            label: 'Tax Bracket',
+            value:
+              calculateTaxBracket(vm.client.province, vm.client.annualIncome)
+              | taxBracket
+          }"></app-value-card>
+      </div>
+    </ng-template>
+  </ng-container>
+</app-calculator>

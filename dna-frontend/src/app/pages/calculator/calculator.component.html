@@ -1,8 +1,5 @@
-<app-sidebar></app-sidebar>
-<div *ngIf="this.userData(); else notLoggedIn">
-  <h1>"Logged in on ID: {{ this.userData() }}"</h1>
-  <button (click)="this.signOut()">Sign out</button>
-</div>
-<ng-template #notLoggedIn>
-  <h1>You are not logged in.</h1>
-</ng-template>
+<app-appbar [pageName]="pageName"></app-appbar>
+<ng-content></ng-content>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<app-bottom-bar></app-bottom-bar>
