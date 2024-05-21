@@ -1,6 +1,11 @@
 import { NgIf } from '@angular/common';
 import { Component, NgZone } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { TuiButtonModule, TuiDataListModule } from '@taiga-ui/core';
 import {
   TuiCheckboxBlockModule,
@@ -42,6 +47,42 @@ export class AssetEditComponent {
     private zone: NgZone
   ) {}
 
+  readonly assetEditInformationForm = new FormGroup({
+    type: new FormControl(),
+    assetName: new FormControl(),
+    yearAcquired: new FormControl(),
+    initialValue: new FormControl(),
+    currentValue: new FormControl(),
+    appreciationRate: new FormControl(),
+    term: new FormControl(),
+    taxable: new FormControl(),
+    liquid: new FormControl(),
+    toBeSold: new FormControl(),
+    taxBracket: new FormControl(),
+  });
+
+  readonly assetEditBeneficiariesForm = new FormGroup({
+    beneficiaries: new FormArray([]),
+  });
+
+  get beneficiaries(): FormArray {
+    return this.assetEditBeneficiariesForm.get('beneficiaries') as FormArray;
+  }
+
+  createBeneficiary(): FormGroup {
+    return new FormGroup({
+      allocation: new FormControl(),
+    });
+  }
+
+  addBeneficiary() {
+    this.beneficiaries.push(this.createBeneficiary());
+  }
+
+  removeBeneficiary(index: number) {
+    this.beneficiaries.removeAt(index);
+  }
+
   activeItemIndex = 0;
 
   types = [
@@ -57,13 +98,6 @@ export class AssetEditComponent {
 
   // TODO: Populate with brackets based on province
   taxBrackets = ['Populate me', 'with province tax data'];
-
-  assetEditForm = new FormGroup({
-    type: new FormControl(),
-    taxable: new FormControl(),
-    liquid: new FormControl(),
-    toBeSold: new FormControl(),
-  });
 
   cancel() {
     this.zone.run(() => {
