@@ -9,7 +9,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.schema.document import Document
 
 # DB
-from langchain.vectorstores.chroma import Chroma
+from supabase._sync.client import SyncClient
+from langchain_community.vectorstores.supabase import SupabaseVectorStore
 
 # ===================
 #   Data Processing
@@ -47,30 +48,35 @@ def chunk(documents: List[Document]):
     return text_splitter.split_documents(documents)
 
 
-# ===================
-#      ChromeDb
-# ===================
-
-
 class Rag:
-    def __init__(self, documents: Optional[List[Document]], embedding: Embeddings):
-        self._db = Chroma(
-            persist_directory="./chroma",
-            embedding_function=embedding
+    def __init__(
+        self,
+        supabase_client: SyncClient,
+        documents: Optional[List[Document]],
+        embedding: Embeddings,
+    ):
+        self._db = SupabaseVectorStore(
+            client=supabase_client,
+            embedding=embedding,
+            table_name="documents",
+            query_name="match_documents",
         )
-
         if documents:
             self.add_documents(documents)
+        else:
+            print("[RAG] No documents provided.")
 
     @staticmethod
     def read_documents(dir: str):
         print("Loading documents...")
         try:
-            loader = DirectoryLoader(dir, glob="**/*", use_multithreading=True, show_progress=True)
+            loader = DirectoryLoader(
+                dir, glob="**/*", use_multithreading=True, show_progress=True
+            )
             return loader.load()
             # return None  # Disable document loading
         except FileNotFoundError:
-            print(f"Documents folder \"{dir}\" not found, skipping document processing.")
+            print(f'Documents folder "{dir}" not found, skipping document processing.')
             return None
 
         # TODO: Figure out a way to only process new documents.
@@ -82,32 +88,19 @@ class Rag:
 
     def add_documents(self, documents: List[Document]):
         chunks = embed_chunk_ids(chunk(documents))
+        print(
+            f"[RAD] Adding {len(documents)} ({len(chunks)} chunks) documents to Supabase..."
+        )
+        self._db.add_documents(chunks)
 
-        # Get a list of existing embeddings in the database
-        existing_items = self._db.get(include=[])
-        existing_ids = set(existing_items["ids"])
-        print(f"Number of existing documents in DB: {len(existing_ids)}")
-
-        # Only add documents that don't exist in the DB.
-        new_chunks = []
-        for _chunk in chunks:
-            if _chunk.metadata["chunk_id"] not in existing_ids:
-                new_chunks.append(_chunk)
-
-        # If we have new chunks, we should add these documents to the database with a unique id
-        if len(new_chunks):
-            print(f"Chunks found: {len(new_chunks)}")
-            new_chunk_ids = [chunk.metadata["chunk_id"] for chunk in new_chunks]
-            self._db.add_documents(new_chunks, ids=new_chunk_ids)
-            self._db.persist()
+        # TODO: Add checks to filter out existing data and add only new chunks
 
     def get_context(self, prompt: str):
-        results = self._db.similarity_search_with_score(prompt, k=5)
+        results = self._db.similarity_search(prompt, k=5)
 
         context = []
 
-        for doc, _score in results:
-            print(_score)
+        for doc in results:
             context.append(doc.page_content)
 
         # # Print the sources used to generate context

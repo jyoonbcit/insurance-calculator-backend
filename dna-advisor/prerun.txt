@@ -1,0 +1,5 @@
+After installing the dependencies, run the following:
+pre-commit install
+
+If you get an issue with core.hooksPath, run the following:
+git config --unset-all core.hooksPath

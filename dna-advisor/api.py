@@ -11,15 +11,11 @@ def create_api(model: Model):
         prompt = request.json["prompt"]
 
         if not prompt:
-            return jsonify({
-                "data": "Missing prompt!"
-            }), 400
+            return jsonify({"data": "Missing prompt!"}), 400
 
         response = model.query(prompt)
 
-        return jsonify({
-            "data": response
-        }), 200
+        return jsonify({"data": response}), 200
 
     @app.route("/healthz")
     def health_check():

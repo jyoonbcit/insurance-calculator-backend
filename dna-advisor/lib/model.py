@@ -29,7 +29,9 @@ class Model:
             context = self._rag.get_context(prompt)
 
         if self._model:
-            formatted_prompt = self._prompt_template.format(prompt=prompt, system=context)
+            formatted_prompt = self._prompt_template.format(
+                prompt=prompt, system=context
+            )
 
             # Print the formatted prompt to the console
             print("=====")
@@ -38,7 +40,7 @@ class Model:
 
             response = self._model.invoke(formatted_prompt).strip()
 
-            if response.startswith(': '):
+            if response.startswith(": "):
                 response = response[2:]
 
             return response
@@ -54,7 +56,9 @@ class Model:
 
 class GPT4AllModel(Model):
     def __init__(self, model: str, instruction_template: str, **kwargs):
-        super().__init__(GPT4All(model=model, **kwargs), GPT4AllEmbeddings(), instruction_template)
+        super().__init__(
+            GPT4All(model=model, **kwargs), GPT4AllEmbeddings(), instruction_template
+        )
 
 
 def get_gpt4all_instance(model: str, instruction_template: str, **kwargs) -> Model:
