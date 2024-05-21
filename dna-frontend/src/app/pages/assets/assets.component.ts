@@ -42,6 +42,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './assets.component.html',
   styleUrl: './assets.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [ClientStore],
 })
 export class AssetsComponent {
   @Input() clientId: number = 0;

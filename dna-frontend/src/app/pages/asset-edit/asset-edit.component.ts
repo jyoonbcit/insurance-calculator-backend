@@ -41,6 +41,7 @@ import { ClientStore } from '../client/client.store';
   ],
   templateUrl: './asset-edit.component.html',
   styleUrl: './asset-edit.component.scss',
+  providers: [ClientStore],
 })
 export class AssetEditComponent {
   @Input() clientId: number = 0;

@@ -35,6 +35,7 @@ import { ClientStore } from '../client/client.store';
   templateUrl: './total-needs.component.html',
   styleUrl: './total-needs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [ClientStore],
 })
 export class TotalNeedsComponent {
   @Input() clientId: number = 0;

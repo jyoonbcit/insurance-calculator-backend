@@ -41,6 +41,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './goals.component.html',
   styleUrl: './goals.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [ClientStore],
 })
 export class GoalsComponent {
   @Input() clientId: number = 0;
