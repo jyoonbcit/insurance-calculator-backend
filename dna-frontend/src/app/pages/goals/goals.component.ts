@@ -1,18 +1,16 @@
 import { NgIf } from '@angular/common';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import {
-  TuiButtonModule,
-  TuiDataListModule,
-  TuiNotificationModule,
-} from '@taiga-ui/core';
+  FormArray,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { TuiButtonModule } from '@taiga-ui/core';
 import {
   TuiCheckboxBlockModule,
-  TuiDataListWrapperModule,
-  TuiInputDateModule,
   TuiInputModule,
   TuiInputNumberModule,
-  TuiInputSliderModule,
   TuiSelectModule,
   TuiTabsModule,
 } from '@taiga-ui/kit';
@@ -27,14 +25,9 @@ import { BarChartComponent } from 'app/core/components/bar-chart/bar-chart.compo
   imports: [
     ReactiveFormsModule,
     TuiInputModule,
-    TuiInputDateModule,
     TuiInputNumberModule,
-    TuiInputSliderModule,
     TuiSelectModule,
-    TuiDataListModule,
-    TuiDataListWrapperModule,
     TuiTabsModule,
-    TuiNotificationModule,
     TuiCheckboxBlockModule,
     TuiButtonModule,
     HorizontalDividerComponent,
@@ -49,6 +42,31 @@ import { BarChartComponent } from 'app/core/components/bar-chart/bar-chart.compo
 })
 export class GoalsComponent {
   activeItemIndex = 0;
+
+  readonly goalsForm = new FormGroup({
+    liquidityAllocatedToGoals: new FormControl(),
+    goals: new FormArray([]),
+  });
+
+  get goals(): FormArray {
+    return this.goalsForm.get('goals') as FormArray;
+  }
+
+  createGoal(): FormGroup {
+    return new FormGroup({
+      name: new FormControl(),
+      amount: new FormControl(),
+      philanthropic: new FormControl(),
+    });
+  }
+
+  addGoal() {
+    this.goals.push(this.createGoal());
+  }
+
+  removeGoal(index: number) {
+    this.goals.removeAt(index);
+  }
 
   currentValueOfFixedAssets = {
     label: 'Total Current Value of Fixed Assets',
