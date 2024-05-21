@@ -7,7 +7,8 @@
   </tui-tabs>
   <form
     class="assets-form flex column m-start c-center gap-2"
-    *ngIf="activeItemIndex === 0; else elseBlock">
+    *ngIf="activeItemIndex === 0; else elseBlock"
+    [formGroup]="assetsForm">
     <!-- Populate dynamically -->
     <div class="asset-section flex column m-start c-center gap-2">
       <tui-input tuiTextfieldSize="s">

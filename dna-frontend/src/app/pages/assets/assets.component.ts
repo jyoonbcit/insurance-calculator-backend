@@ -1,6 +1,11 @@
 import { NgIf } from '@angular/common';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { TuiButtonModule, TuiNotificationModule } from '@taiga-ui/core';
 import {
   TuiInputModule,
@@ -38,6 +43,30 @@ import { PieChartComponent } from 'app/core/components/pie-chart/pie-chart.compo
 })
 export class AssetsComponent {
   activeItemIndex = 0;
+
+  readonly assetsForm = new FormGroup({
+    assets: new FormArray([]),
+  });
+
+  get assets(): FormArray {
+    return this.assetsForm.get('assets') as FormArray;
+  }
+
+  createAsset(): FormGroup {
+    return new FormGroup({
+      name: new FormControl(),
+      currentValue: new FormControl(),
+      futureTaxLiability: new FormControl(),
+    });
+  }
+
+  addAsset() {
+    this.assets.push(this.createAsset());
+  }
+
+  removeAsset(index: number) {
+    this.assets.removeAt(index);
+  }
 
   totalInitialValue = {
     label: 'Total Initial Value ($)',
