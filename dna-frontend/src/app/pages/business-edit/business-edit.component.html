@@ -1,0 +1,78 @@
+<app-header-bar pageName="Edit Business"></app-header-bar>
+<tui-tabs
+  class="nav-tabs flex row m-center"
+  [(activeItemIndex)]="activeItemIndex">
+  <button tuiTab>Information</button>
+  <button tuiTab>Shareholders</button>
+</tui-tabs>
+<form
+  class="business-edit-form flex column m-start c-center gap-2 margin-vertical-s"
+  [formGroup]="businessEditInformationForm"
+  *ngIf="activeItemIndex === 0; else elseBlock">
+  <tui-input tuiTextfieldSize="s" formControlName="name">
+    Name
+    <input tuiTextfield />
+  </tui-input>
+  <tui-input-number tuiTextfieldSize="s" formControlName="valuation">
+    Valuation ($CAD)</tui-input-number
+  >
+  <tui-input-number tuiTextfieldSize="s" formControlName="ebitda">
+    EBITDA ($CAD)</tui-input-number
+  >
+  <tui-input-number tuiTextfieldSize="s" formControlName="appreciationRate">
+    Appreciation Rate ($CAD)</tui-input-number
+  >
+  <tui-input-number tuiTextfieldSize="s" formControlName="term">
+    Term (Years)</tui-input-number
+  >
+  <tui-notification status="warning" [hasIcon]="true">
+    Add shareholders using the tabs above.
+  </tui-notification>
+</form>
+<ng-template #elseBlock>
+  <form
+    class="business-edit-form flex column m-start c-center margin-vertical-s"
+    [formGroup]="businessEditShareholdersForm">
+    <div
+      formArrayName="shareholders"
+      class="business-edit-shareholder-dynamic-section flex column m-start c-center gap-2">
+      <tui-input
+        class="business-edit-shareholder-input"
+        tuiTextfieldSize="s"
+        formControlName="name">
+        Name
+        <input tuiTextfield />
+      </tui-input>
+      <tui-input-number
+        class="business-edit-shareholder-input"
+        tuiTextfieldSize="s"
+        formControlName="sharePercentage">
+        Share Percentage (%)</tui-input-number
+      >
+      <tui-input-number
+        class="business-edit-shareholder-input"
+        tuiTextfieldSize="s"
+        formControlName="insuranceCoverage">
+        Insurance Coverage ($)</tui-input-number
+      >
+      <tui-input-number
+        class="business-edit-shareholder-input"
+        tuiTextfieldSize="s"
+        formControlName="ebitdaContributionPercentage">
+        EBITDA Contribution Percentage (%)</tui-input-number
+      >
+      <button
+        tuiButton
+        type="button"
+        appearance="secondary-destructive"
+        class="delete-button">
+        Delete
+      </button>
+      <app-horizontal-divider class="info-divider"></app-horizontal-divider>
+    </div>
+    <button tuiButton type="button" class="add-new-button">Add New</button>
+  </form>
+</ng-template>
+<app-action-bar
+  (leftButtonClick)="cancel()"
+  (rightButtonClick)="save()"></app-action-bar>

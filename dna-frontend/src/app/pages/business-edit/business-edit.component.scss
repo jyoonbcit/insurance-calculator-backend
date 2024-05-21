@@ -6,6 +6,16 @@
   justify-content: start;
   background-color: white;
   height: 100%;
+  padding-bottom: 6em;
+}
+
+.business-edit-form {
+  height: 100%;
+  width: 100%;
+
+  > * {
+    width: 90%;
+  }
 }
 
 .nav-tabs {
@@ -13,34 +23,27 @@
   box-shadow: none;
 }
 
-.beneficiary-form {
-  height: auto;
+.businesses-result-container {
+  height: 100%;
   width: 100%;
-  margin-bottom: 1em;
 
   > * {
     width: 90%;
   }
 }
 
-.beneficiary-result-container {
-  height: auto;
-  width: 100%;
-  margin-bottom: 1em;
-
+.business-section {
   > * {
-    width: 90%;
+    width: 100%;
   }
-}
-
-.beneficiary-input {
-  margin-bottom: 1em;
-  width: 100%;
 }
 
 .info-divider {
   margin-bottom: 1em;
-  margin-top: 1em;
+}
+
+.business-edit-shareholder-input {
+  width: 100%;
 }
 
 .delete-button {

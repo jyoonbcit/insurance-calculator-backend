@@ -69,11 +69,19 @@ export const routes: Routes = [
     title: 'DNA | Beneficiaries',
   },
   {
-    path: 'businesses',
+    path: 'businesses/:id',
     canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/businesses/businesses.component').then(
         com => com.BusinessesComponent
+      ),
+    title: 'DNA | Businesses',
+  },
+  {
+    path: 'business/:clientId/:businessId',
+    loadComponent: () =>
+      import('./pages/business-edit/business-edit.component').then(
+        com => com.BusinessEditComponent
       ),
     title: 'DNA | Businesses',
   },
