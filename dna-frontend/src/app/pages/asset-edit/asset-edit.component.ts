@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, NgZone } from '@angular/core';
+import { Component, Input, NgZone } from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -18,7 +18,8 @@ import {
 import { HorizontalDividerComponent } from 'app/core/components/horizontal-divider/horizontal-divider.component';
 import { HeaderBarComponent } from 'app/core/components/header-bar/header-bar.component';
 import { ActionBarComponent } from 'app/core/components/action-bar/action-bar.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ClientStore } from '../client/client.store';
 
 @Component({
   selector: 'app-asset-edit',
@@ -42,10 +43,20 @@ import { Router } from '@angular/router';
   styleUrl: './asset-edit.component.scss',
 })
 export class AssetEditComponent {
+  @Input() clientId: number = 0;
+  @Input() assetId: number = 0;
+
   constructor(
     private router: Router,
-    private zone: NgZone
-  ) {}
+    private zone: NgZone,
+    private readonly clientStore: ClientStore,
+    private route: ActivatedRoute
+  ) {
+    this.route.params.subscribe(params => {
+      this.clientId = +params['clientId'];
+      this.assetId = +params['assetId'];
+    });
+  }
 
   readonly assetEditInformationForm = new FormGroup({
     type: new FormControl(),
