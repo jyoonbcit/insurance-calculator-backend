@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -15,6 +15,8 @@ import {
 } from '@taiga-ui/kit';
 import { CalculatorComponent } from '../calculator/calculator.component';
 import { MultiValueCardComponent } from 'app/core/components/multi-value-card/multi-value-card.component';
+import { ActivatedRoute } from '@angular/router';
+import { ClientStore } from '../client/client.store';
 
 @Component({
   selector: 'app-total-needs',
@@ -35,7 +37,18 @@ import { MultiValueCardComponent } from 'app/core/components/multi-value-card/mu
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TotalNeedsComponent {
+  @Input() clientId: number = 0;
   activeItemIndex = 0;
+
+  constructor(
+    private readonly clientStore: ClientStore,
+    private route: ActivatedRoute
+  ) {
+    this.route.params.subscribe(params => {
+      this.clientId = +params['clientId'];
+      // Use the clientStore here.
+    });
+  }
 
   readonly totalNeedsForm = new FormGroup({
     needs: new FormArray([]),

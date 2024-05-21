@@ -126,7 +126,7 @@ export const routes: Routes = [
     title: 'DNA | Goals',
   },
   {
-    path: 'total-needs',
+    path: 'total-needs/:clientId',
     canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/total-needs/total-needs.component').then(
