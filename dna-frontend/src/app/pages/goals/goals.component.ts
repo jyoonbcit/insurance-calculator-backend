@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -18,6 +18,8 @@ import { CalculatorComponent } from '../calculator/calculator.component';
 import { HorizontalDividerComponent } from 'app/core/components/horizontal-divider/horizontal-divider.component';
 import { ValueCardComponent } from 'app/core/components/value-card/value-card.component';
 import { BarChartComponent } from 'app/core/components/bar-chart/bar-chart.component';
+import { ClientStore } from '../client/client.store';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-goals',
@@ -41,7 +43,18 @@ import { BarChartComponent } from 'app/core/components/bar-chart/bar-chart.compo
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GoalsComponent {
+  @Input() clientId: number = 0;
   activeItemIndex = 0;
+
+  constructor(
+    private readonly clientStore: ClientStore,
+    private route: ActivatedRoute
+  ) {
+    this.route.params.subscribe(params => {
+      this.clientId = +params['clientId'];
+      // Use the clientStore here.
+    });
+  }
 
   readonly goalsForm = new FormGroup({
     liquidityAllocatedToGoals: new FormControl(),

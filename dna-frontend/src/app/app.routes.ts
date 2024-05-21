@@ -119,7 +119,7 @@ export const routes: Routes = [
     title: 'DNA | Debts',
   },
   {
-    path: 'goals',
+    path: 'goals/:clientId',
     canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/goals/goals.component').then(com => com.GoalsComponent),
