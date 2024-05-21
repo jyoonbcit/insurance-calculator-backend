@@ -1,0 +1,83 @@
+<app-header-bar pageName="Edit Asset"></app-header-bar>
+<tui-tabs
+  class="nav-tabs flex row m-center"
+  [(activeItemIndex)]="activeItemIndex">
+  <button tuiTab>Information</button>
+  <button tuiTab>Beneficiaries</button>
+</tui-tabs>
+<form
+  class="asset-edit-form flex column m-start c-center gap-2"
+  *ngIf="activeItemIndex === 0; else elseBlock"
+  [formGroup]="assetEditForm">
+  <tui-select formControlName="type">
+    Type
+    <tui-data-list-wrapper *tuiDataList [items]="types"></tui-data-list-wrapper>
+  </tui-select>
+  <tui-input tuiTextfieldSize="s">
+    Asset Name
+    <input tuiTextfield />
+  </tui-input>
+  <tui-input-number tuiTextfieldSize="s">
+    Year Acquired
+    <input tuiTextfield />
+  </tui-input-number>
+  <tui-input-number tuiTextfieldSize="s">
+    Initial Value ($)
+    <input tuiTextfield />
+  </tui-input-number>
+  <tui-input-number tuiTextfieldSize="s">
+    Current Value ($)
+    <input tuiTextfield />
+  </tui-input-number>
+  <tui-input-number tuiTextfieldSize="s">
+    Appreciation Rate (%)
+    <input tuiTextfield />
+  </tui-input-number>
+  <tui-input-number tuiTextfieldSize="s">
+    Term (Years)
+    <input tuiTextfield />
+  </tui-input-number>
+  <tui-checkbox-block formControlName="taxable">Taxable</tui-checkbox-block>
+  <tui-checkbox-block formControlName="liquid">Liquid</tui-checkbox-block>
+  <tui-checkbox-block formControlName="toBeSold">To Be Sold</tui-checkbox-block>
+  <tui-select formControlName="taxBracket">
+    Tax Bracket
+    <tui-data-list-wrapper
+      *tuiDataList
+      [items]="taxBrackets"></tui-data-list-wrapper>
+  </tui-select>
+</form>
+<ng-template #elseBlock>
+  <form class="asset-beneficiary-form gap-2 flex column m-start c-center">
+    <!-- Dynamically populate -->
+    <div class="asset-section flex column m-start c-center gap-2">
+      <tui-input-number tuiTextfieldSize="s">
+        Beneficiary 1 Allocation (%)
+        <input tuiTextfield />
+      </tui-input-number>
+      <button
+        tuiButton
+        type="button"
+        appearance="secondary"
+        class="remove-button">
+        Remove
+      </button>
+      <app-horizontal-divider></app-horizontal-divider>
+    </div>
+    <div class="asset-section flex column m-start c-center gap-2">
+      <button
+        tuiButton
+        type="button"
+        appearance="primary"
+        class="remove-button">
+        Add Beneficiary 2
+      </button>
+      <app-horizontal-divider></app-horizontal-divider>
+    </div>
+  </form>
+</ng-template>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<app-action-bar
+  (leftButtonClick)="cancel()"
+  (rightButtonClick)="save()"></app-action-bar>
