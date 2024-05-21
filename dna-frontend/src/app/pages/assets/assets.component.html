@@ -11,15 +11,17 @@
     [formGroup]="assetsForm">
     <!-- Populate dynamically -->
     <div class="asset-section flex column m-start c-center gap-2">
-      <tui-input tuiTextfieldSize="s">
+      <tui-input tuiTextfieldSize="s" formControlName="name">
         Name
         <input tuiTextfield />
       </tui-input>
-      <tui-input-number tuiTextfieldSize="s">
+      <tui-input-number tuiTextfieldSize="s" formControlName="currentValue">
         Current Value ($)
         <input tuiTextfield />
       </tui-input-number>
-      <tui-input-number tuiTextfieldSize="s">
+      <tui-input-number
+        tuiTextfieldSize="s"
+        formControlName="futureTaxLiability">
         Future Tax Liability ($)
         <input tuiTextfield />
       </tui-input-number>
