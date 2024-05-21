@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CalculatorComponent } from '../calculator/calculator.component';
 import { NgIf } from '@angular/common';
 import {
@@ -13,6 +13,7 @@ import { ValueCardComponent } from 'app/core/components/value-card/value-card.co
 import { ValueListCardComponent } from 'app/core/components/value-list-card/value-list-card.component';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BusinessesStore } from './businesses.store';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-businesses',
@@ -35,6 +36,7 @@ import { BusinessesStore } from './businesses.store';
 })
 export class BusinessesComponent {
   mainActiveItemIndex = 0;
+  @Input() clientId: number = 0;
 
   form = this.formBuilder.group({
     businesses: this.formBuilder.array([]),
@@ -49,8 +51,13 @@ export class BusinessesComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private businessesStore: BusinessesStore
-  ) {}
+    private businessesStore: BusinessesStore,
+    private route: ActivatedRoute
+  ) {
+    this.route.params.subscribe(params => {
+      this.clientId = +params['id'];
+    });
+  }
 
   get businesses() {
     return this.form.controls['businesses'] as FormArray;
