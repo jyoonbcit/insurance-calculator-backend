@@ -1,9 +1,15 @@
 import { NgFor } from '@angular/common';
 import { Component, NgZone } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
 import { TuiButtonModule } from '@taiga-ui/core';
 import { TuiProgressSegmentedModule } from '@taiga-ui/experimental';
 import { TuiProgressModule } from '@taiga-ui/kit';
+import { ClientStore } from 'app/pages/client/client.store';
 
 @Component({
   selector: 'app-bottom-bar',
@@ -18,15 +24,22 @@ import { TuiProgressModule } from '@taiga-ui/kit';
   ],
   templateUrl: './bottom-bar.component.html',
   styleUrl: './bottom-bar.component.scss',
+  providers: [ClientStore],
 })
 export class BottomBarComponent {
   constructor(
     private readonly router: Router,
-    private readonly zone: NgZone
-  ) {}
+    private readonly zone: NgZone,
+    private route: ActivatedRoute
+  ) {
+    this.route.params.subscribe(params => {
+      this.clientId = +params['clientId'];
+      this.urlSuffix = `/${this.clientId}`;
+    });
+  }
 
-  // TODO: get client id here
-  urlSuffix = '/1';
+  clientId = 0;
+  urlSuffix = `/0`;
 
   pageList = [
     'client',
