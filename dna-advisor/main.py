@@ -33,7 +33,7 @@ def initialize_model(path: str, template: str, loader):
 
 
 if __name__ == "__main__":
-    DEFAULT_ADDRESS = "0.0.0.0"
+    DEFAULT_ADDRESS = "https://dna-advisor.onrender.com"
     DEFAULT_PORT = 3001
     DOCUMENTS_DIR = os.getenv("DOCUMENTS", "./documents")
     SUPABASE_URL = os.getenv("SUPABASE_URL")
